@@ -35,14 +35,29 @@ namespace Tracking
 
         public static DataSet getDate(int currentnode)
         {
-            string sql = string.Format("select a.time from record as a where a.currentnode= {0} and not exisit (selete * from record as b where a.cargo_id = b.cargo_id and b.send_id>a.send_id)", currentnode);
+            string sql = string.Format("select DATE_FORMAT(a.time,'%Y-%m-%d') from record as a where a.currentnode= {0} and not exisit (selete * from record as b where a.cargo_id = b.cargo_id and b.send_id>a.send_id)", currentnode);
             return DBO.execute(sql);
         }
 
         public static DataSet getRecord(string time, int action, int cuttentnode)
         {
-            string sql = string.Format("select * from record as a where a.currentnode= {0} and a.action={1} and time='{2}' and not exisit (selete * from record as b where a.cargo_id = b.cargo_id and b.send_id>a.send_id)");
+            string sql = string.Format("select * from record as a where a.currentnode= {0} and a.action={1} and time like'{2}%' and not exisit (selete * from record as b where a.cargo_id = b.cargo_id and b.send_id>a.send_id)");
             return DBO.execute(sql);
+        }
+
+        public static string newGoods(Dictionary<string,object> args)
+        {
+            try
+            {
+                string sql = string.Format("insert into goods(id,sender,senderaddr,receiver,receiverphone,senderphone,time,price,receiveraddr,sendnode,receivenode) values ((select count(*) from goods,{0},{1},{2},{3},{4},(Select CONVERT(varchar(100), GETDATE(), 20)),{5},{6},{7},{8})",
+                    new Object[]{args["sender"],args["senderaddr"],args["receiver"],args["receiverphone"],args["senderphone"],args["price"],args["receiveraddr"],args["snednode"],args["receivenode"]});
+               execute(sql);
+            }
+            catch(Exception e)
+            {
+                throw new Exception();
+            }
+            return (string)execute("select last_insert_id() from goods").Tables[0].Rows[0][0];
         }
     }
 }

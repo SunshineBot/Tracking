@@ -23,5 +23,22 @@ namespace Tracking
         {
             InitializeComponent();
         }
+
+        private void submit_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void search_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                DBO.getRecord(int.Parse(goodsid.Text));
+            }
+            catch (Exception )
+            {
+                MessageBox.Show("请输入一个有效的快递单号", "系统提示");
+            }
+        }
     }
 }
