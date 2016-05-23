@@ -19,17 +19,16 @@ namespace Tracking
             return result;
         }
 
-        public static DataSet getRecord(int goods_id)
+        public static DataSet getRecord(string goods_id)
         {
-            string sql = string.Format("select * from record where cargo_id = {0} order by send_id desc", goods_id);
+            string sql = string.Format("select time,a.name,b.name,action from record,node as a,node as b where cargo_id = {0} and currentnode= a.id and nextnode=b.id order by send_id desc", goods_id);
             return DBO.execute(sql);
         }
 
-        public static void newRecord(int goods_id, int currentnode, int nextnode, int action)
+        public static void newRecord(string goods_id, int currentnode, int nextnode, int action)
         {
-            string time = DateTime.Now.ToString();
-            object[] args = { goods_id, time, currentnode, nextnode, action, goods_id };
-            string sql = string.Format("insert into record (cargo_id,time,currentnode,nextnode,action,send_id) values ({0},'{1}',{2},{3},{4}，(select count(*) from record where cargo_id={5}))", args);
+            object[] args = { goods_id, currentnode, nextnode, action, goods_id };
+            string sql = string.Format("insert into record (cargo_id,time,currentnode,nextnode,action,send_id) values ({0},now(),{1},{2},{3},(select count(*) from record as b where cargo_id={4}))", args);
             DBO.execute(sql);
         }
 
@@ -49,15 +48,21 @@ namespace Tracking
         {
             try
             {
-                string sql = string.Format("insert into goods(id,sender,senderaddr,receiver,receiverphone,senderphone,time,price,receiveraddr,sendnode,receivenode) values ((select count(*) from goods,{0},{1},{2},{3},{4},(Select CONVERT(varchar(100), GETDATE(), 20)),{5},{6},{7},{8})",
-                    new Object[]{args["sender"],args["senderaddr"],args["receiver"],args["receiverphone"],args["senderphone"],args["price"],args["receiveraddr"],args["snednode"],args["receivenode"]});
+                string sql = string.Format("insert into goods(id,sender,senderaddr,receiver,receiverphone,senderphone,time,price,receiveraddr,sendnode,receivenode) values ((select count(*) from goods as b),'{0}','{1}','{2}','{3}','{4}',now(),'{5}','{6}',{7},{8})",
+                    new object[] { (string)args["sendername"],(string)args["senderaddr"] ,(string)args["receivername"],(string)args["receiverphone"],(string)args["senderphone"],(string)args["price"], (string)args["receiveraddr"],args["sendsite"],args["receivesite"]});
                execute(sql);
             }
-            catch(Exception e)
+            catch(Exception )
             {
                 throw new Exception();
             }
-            return (string)execute("select last_insert_id() from goods").Tables[0].Rows[0][0];
+            return ""+execute("select last_insert_id() from goods").Tables[0].Rows[0][0];
+        }
+
+        public static DataSet getNode()
+        {
+            string sql = "select id, name from node";
+            return execute(sql);
         }
     }
 }
