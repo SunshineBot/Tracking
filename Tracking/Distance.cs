@@ -3,25 +3,41 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace Tracking
 {
     public class Distance
     {
         private int currentNode;
-
-        
-
+        private LinkedList<NextNode> S;
+        public static readonly int[][] distanceMatrix;
+        static Distance(){
+            //todo : 从文件读取距离矩阵。
+            StreamReader file = new StreamReader(@"distanceMatrix.txt");
+            String[][] strArray = new String[RES.LOC_MAX][];
+            distanceMatrix = new int[RES.LOC_MAX][];
+            for (int i = 0; i < strArray.Length; i++ )
+            {
+                strArray[i] = file.ReadLine().Split(new char[] { '\t' });
+                distanceMatrix[i] = new int[RES.LOC_MAX];
+                for(int j = 0; j < strArray[i].Length; j++)
+                {
+                    distanceMatrix[i][j] = Int32.Parse(strArray[i][j]);
+                }
+            }
+        }
         public Distance(int currentNode)
         {
+            
             this.currentNode = currentNode;
         }
 
-        public NextNode getNext(int finalNode)
+        public NextNode calcMinDistance()
         {
             NextNode nextNode = new NextNode();
-            LinkedList<NextNode> S = new LinkedList<NextNode>();
-            S.AddFirst(new NextNode(currentNode, currentNode, 0).addNode(currentNode));
+            S = new LinkedList<NextNode>();
+            S.AddFirst(new NextNode(currentNode, currentNode, 0));
             LinkedList<NextNode> U = new LinkedList<NextNode>();
             for (int i = 0; i < RES.LOC_MAX; i++)
             {
@@ -31,128 +47,143 @@ namespace Tracking
 
             List<NextNode> disList = new List<NextNode>();
             List<NextNode> minDisList = new List<NextNode>();
-            //int thisNode = currentNode;
             while (U.Count > 0)
             {
-                //foreach (int l in U)
-                //{
-                    LinkedList<NextNode> neighbors = getNeighbors(1, U);
-                    NextNode minNode;
-                    int minDistance = 65535;
-                    foreach(NextNode node in neighbors){
-                        if (node.distance < minDistance)
-                        {
-                            minNode = node;
-                            minDistance = node.distance;
-                        }
-                    }
-                    foreach (NextNode node in minDisList)
-                    {
-                        //todo : nextnode中还需要记录路径=.=||
-                    }
-                //}
+                NextNode minNode = findNeighbors(S.Last<NextNode>(), U, S);
+                S.AddLast(minNode);
+                U.Remove(minNode);
             }
-
             return nextNode;
         }
 
-        private LinkedList<NextNode> getNeighbors(int currentNode, LinkedList<NextNode> edges)
+        public NextNode getNextNode(int finalNode)
         {
-            
-            LinkedList<NextNode> nodeList = new LinkedList<NextNode>();
-            /*
+            foreach (NextNode node in S)
+            {
+                if (node.next == finalNode)
+                {
+                    return new NextNode(currentNode, node.dirs[0], getDistance(currentNode, node.dirs[0]));
+                    //foreach (NextNode n in S)
+                    //{
+                    //    if(n.next == node.dirs[0])
+                    //        return new NextNode(currentNode, node.next, n.distance);
+                    //}
+                }
+                    
+            }
+            return new NextNode();
+        }
+
+        private NextNode findNeighbors(NextNode thisNode, LinkedList<NextNode> edges, LinkedList<NextNode> S)
+        {
+
+            int currentNode = thisNode.next;
             switch (currentNode)
             {
                 case RES.BJ:
-                    if (edges.Contains<int>(RES.TJ))
-                        nodeList.AddLast(new NextNode(currentNode, RES.TJ, 137));
-                    if (edges.Contains<int>(RES.HLJ))
-                    nodeList.AddLast(new NextNode(currentNode, RES.HLJ, 1225));
-                    if (edges.Contains<int>(RES.SD))
-                    nodeList.AddLast(new NextNode(currentNode, RES.SD, 424));
-                    if (edges.Contains<int>(RES.SC))
-                    nodeList.AddLast(new NextNode(currentNode, RES.SC, 1788));
-                    if (edges.Contains<int>(RES.HB))
-                    nodeList.AddLast(new NextNode(currentNode, RES.HB, 1164));
+                    foreach (NextNode n in edges)
+                    {
+                        setIt(n, thisNode, RES.TJ, getDistance(currentNode, RES.TJ));
+                        setIt(n, thisNode, RES.HLJ, getDistance(currentNode, RES.HLJ));
+                        setIt(n, thisNode, RES.SD, getDistance(currentNode, RES.SD));
+                        setIt(n, thisNode, RES.SC, getDistance(currentNode, RES.SC));
+                        setIt(n, thisNode, RES.HB, getDistance(currentNode, RES.HB));
+                    }
                     break;
                 case RES.HLJ:
-                    if (edges.Contains<int>(RES.BJ))
-                    nodeList.AddLast(new NextNode(currentNode, RES.BJ, 1225));
-                    if (edges.Contains<int>(RES.TJ))
-                    nodeList.AddLast(new NextNode(currentNode, RES.TJ, 1207));
+                    foreach (NextNode n in edges)
+                    {
+                        setIt(n, thisNode, RES.BJ, getDistance(currentNode, RES.BJ));
+                        setIt(n, thisNode, RES.TJ, getDistance(currentNode, RES.TJ));
+                    }
                     break;
                 case RES.TJ:
-                    if (edges.Contains<int>(RES.HLJ))
-                    nodeList.AddLast(new NextNode(currentNode, RES.HLJ, 1207));
-                    if (edges.Contains<int>(RES.BJ))
-                    nodeList.AddLast(new NextNode(currentNode, RES.BJ, 137));
-                    if (edges.Contains<int>(RES.SD))
-                    nodeList.AddLast(new NextNode(currentNode, RES.SD, 330));
-                    if (edges.Contains<int>(RES.SH))
-                    nodeList.AddLast(new NextNode(currentNode, RES.SH, 1084));
+                    foreach (NextNode n in edges)
+                    {
+                        setIt(n, thisNode, RES.HLJ, getDistance(currentNode, RES.HLJ));
+                        setIt(n, thisNode, RES.BJ, getDistance(currentNode, RES.BJ));
+                        setIt(n, thisNode, RES.SD, getDistance(currentNode, RES.SD));
+                        setIt(n, thisNode, RES.SH, getDistance(currentNode, RES.SH));
+                    }
                     break;
                 case RES.SD:
-                    if (edges.Contains<int>(RES.BJ))
-                    nodeList.AddLast(new NextNode(currentNode, RES.BJ, 424));
-                    if (edges.Contains<int>(RES.TJ))
-                    nodeList.AddLast(new NextNode(currentNode, RES.TJ, 330));
-                    if (edges.Contains<int>(RES.SC))
-                    nodeList.AddLast(new NextNode(currentNode, RES.SC, 1607));
-                    if (edges.Contains<int>(RES.HB))
-                    nodeList.AddLast(new NextNode(currentNode, RES.HB, 853));
-                    if (edges.Contains<int>(RES.SH))
-                    nodeList.AddLast(new NextNode(currentNode, RES.SH, 846));
+                    foreach (NextNode n in edges)
+                    {
+                        setIt(n, thisNode, RES.BJ, getDistance(currentNode, RES.BJ));
+                        setIt(n, thisNode, RES.TJ, getDistance(currentNode, RES.TJ));
+                        setIt(n, thisNode, RES.SC, getDistance(currentNode, RES.SC));
+                        setIt(n, thisNode, RES.HB, getDistance(currentNode, RES.HB));
+                        setIt(n, thisNode, RES.SH, getDistance(currentNode, RES.SH));
+                    }
                     break;
                 case RES.SC:
-                    if (edges.Contains<int>(RES.BJ))
-                    nodeList.AddLast(new NextNode(currentNode, RES.BJ, 1788));
-                    if (edges.Contains<int>(RES.SD))
-                    nodeList.AddLast(new NextNode(currentNode, RES.SD, 1607));
-                    if (edges.Contains<int>(RES.HB))
-                    nodeList.AddLast(new NextNode(currentNode, RES.HB, 1154));
-                    if (edges.Contains<int>(RES.GD))
-                    nodeList.AddLast(new NextNode(currentNode, RES.GD, 1673));
+                    foreach (NextNode n in edges)
+                    {
+                        setIt(n, thisNode, RES.BJ, getDistance(currentNode, RES.BJ));
+                        setIt(n, thisNode, RES.SD, getDistance(currentNode, RES.SD));
+                        setIt(n, thisNode, RES.HB, getDistance(currentNode, RES.HB));
+                        setIt(n, thisNode, RES.GD, getDistance(currentNode, RES.GD));
+                    }
                     break;
                 case RES.HB:
-                    if (edges.Contains<int>(RES.BJ))
-                    nodeList.AddLast(new NextNode(currentNode, RES.BJ, 1164));
-                    if (edges.Contains<int>(RES.SD))
-                    nodeList.AddLast(new NextNode(currentNode, RES.SD, 853));
-                    if (edges.Contains<int>(RES.SC))
-                    nodeList.AddLast(new NextNode(currentNode, RES.SC, 1145));
-                    if (edges.Contains<int>(RES.SH))
-                    nodeList.AddLast(new NextNode(currentNode, RES.SH, 841));
-                    if (edges.Contains<int>(RES.GD))
-                    nodeList.AddLast(new NextNode(currentNode, RES.GD, 991));
+                    foreach (NextNode n in edges)
+                    {
+                        setIt(n, thisNode, RES.BJ, getDistance(currentNode, RES.BJ));
+                        setIt(n, thisNode, RES.SD, getDistance(currentNode, RES.SD));
+                        setIt(n, thisNode, RES.SC, getDistance(currentNode, RES.SC));
+                        setIt(n, thisNode, RES.SH, getDistance(currentNode, RES.SH));
+                        setIt(n, thisNode, RES.GD, getDistance(currentNode, RES.GD));
+                    }
                     break;
                 case RES.SH:
-                    if (edges.Contains<int>(RES.TJ))
-                    nodeList.AddLast(new NextNode(currentNode, RES.TJ, 1084));
-                    if (edges.Contains<int>(RES.SD))
-                    nodeList.AddLast(new NextNode(currentNode, RES.SD, 846));
-                    if (edges.Contains<int>(RES.HB))
-                    nodeList.AddLast(new NextNode(currentNode, RES.HB, 841));
-                    if (edges.Contains<int>(RES.GD))
-                    nodeList.AddLast(new NextNode(currentNode, RES.GD, 1463));
+                    foreach (NextNode n in edges)
+                    {
+                        setIt(n, thisNode, RES.TJ, getDistance(currentNode, RES.TJ));
+                        setIt(n, thisNode, RES.SD, getDistance(currentNode, RES.SD));
+                        setIt(n, thisNode, RES.HB, getDistance(currentNode, RES.HB));
+                        setIt(n, thisNode, RES.GD, getDistance(currentNode, RES.GD));
+                    }
                     break;
                 case RES.GD:
-                    if (edges.Contains<int>(RES.SC))
-                    nodeList.AddLast(new NextNode(currentNode, RES.SC, 1673));
-                    if (edges.Contains<int>(RES.HB))
-                    nodeList.AddLast(new NextNode(currentNode, RES.HB, 991));
-                    if (edges.Contains<int>(RES.SH))
-                    nodeList.AddLast(new NextNode(currentNode, RES.SH, 1463));
+                    foreach (NextNode n in edges)
+                    {
+                        setIt(n, thisNode, RES.SC, getDistance(currentNode, RES.SC));
+                        setIt(n, thisNode, RES.HB, getDistance(currentNode, RES.HB));
+                        setIt(n, thisNode, RES.SH, getDistance(currentNode, RES.SH));
+                    }
                     break;
             }
-            */
-
-            
-            return nodeList;
+            NextNode minNode = edges.First<NextNode>();
+            for (int i = 1; i < edges.Count(); i++)
+            {
+                if (minNode.distance > edges.ElementAt<NextNode>(i).distance)
+                {
+                    minNode = edges.ElementAt<NextNode>(i);
+                }
+            }
+            return minNode;
         }
         //private void addToList(LinkedList<NextNode> nodeList, LinkedList<int> edges, int node, int dist)
         //{
         //    if (edges.Contains<int>(node))
         //        nodeList.AddLast(new NextNode(node, dist));
         //}
+        private static void setIt(NextNode nodeU, NextNode thisNode, int city, int distance)
+        {
+            if (nodeU.next != thisNode.next && nodeU.next == city)
+            {
+                if (thisNode.distance + distance < nodeU.distance)
+                {
+                    nodeU.distance = thisNode.distance;
+                    thisNode.copyDirsTo(nodeU);
+                    nodeU.addNode(city, distance);
+                }
+            }
+        }
+
+        public int getDistance(int n1, int n2){
+            return distanceMatrix[n1][n2];
+        }
+
     }
 }

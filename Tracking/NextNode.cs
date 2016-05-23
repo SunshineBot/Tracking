@@ -12,10 +12,11 @@ namespace Tracking
         public int next;
         public int distance;
         public int[] dirs;
-
+        private int index;
         public NextNode()
         {
-
+            dirs = new int[RES.LOC_MAX];
+            index = 0;
         }
         public NextNode(int current, int next, int distance)
         {
@@ -23,18 +24,30 @@ namespace Tracking
             this.next = next;
             this.distance = distance;
             dirs = new int[RES.LOC_MAX];
+            index = 0;
         }
 
-        public NextNode addNode(int node)
+        public NextNode addNode(int node, int distance)
         {
-            dirs[dirs.Length] = node;
+            if (index + 1 < RES.LOC_MAX)
+            {
+                dirs[index++] = node;
+                this.distance += distance;
+            }
             return this;
         }
 
         public NextNode deleteNode()
         {
             dirs = new int[RES.LOC_MAX];
+            distance = 0;
+            index = 0;
             return this;
+        }
+
+        public void copyDirsTo(NextNode node){
+            this.dirs.CopyTo(node.dirs, 0);
+            node.index = this.index;
         }
     }
 }
