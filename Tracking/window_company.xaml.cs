@@ -89,10 +89,10 @@ namespace Tracking
         {
             IList<String> list = new List<String>();
             // todo : fill this method.
-            list.Add("010302112313");
-            list.Add("010302112543");
-            list.Add("010302112344");
-            list.Add("010302112322");
+            list.Add(String.Format("{0:D2}0302112313", Location));
+            list.Add(String.Format("{0:D2}0302112543", Location));
+            list.Add(String.Format("{0:D2}0302112344", Location));
+            list.Add(String.Format("{0:D2}0302112322", Location));
             return list;
         }
 
@@ -106,6 +106,32 @@ namespace Tracking
         {
             label_send.Background = new ImageBrush(new BitmapImage(
                 new Uri("res\\button\\send-hover.png", System.UriKind.Relative)));
+            Distance[] Nodes = new Distance[RES.LOC_MAX];
+            for (int i = 0; i < Nodes.Length; i++)
+            {
+                Nodes[i] = new Distance(i);
+            }
+            //Distance bjNode = new Distance(RES.BJ);
+            //bjNode.calcMinDistance();
+            //NextNode bjNextNode = bjNode.getNextNode(RES.GD);
+            List<TreeModel> bills = new List<TreeModel>();
+            foreach (ZsmTreeView[] trees in treeList)
+            {
+                foreach (ZsmTreeView tree in trees)
+                {
+                    foreach (IList<TreeModel> parentList in tree.ItemsSourceData)
+                    {
+                        foreach (TreeModel parentData in parentList)
+                        {
+                            foreach (TreeModel childData in parentData.Children)
+                            {
+                                bills.Add(childData);
+                            }
+                        }
+                    }
+                }
+            }
+
         }
 
         private void label_settle_MouseDown(object sender, MouseButtonEventArgs e)
