@@ -32,9 +32,9 @@ namespace Tracking
             DBO.execute(sql);
         }
 
-        public static DataSet getDate(int currentnode)
+        public static DataSet getDate(int currentnode, int action)
         {
-            string sql = string.Format("select DATE_FORMAT(a.time,'%Y-%m-%d') from record as a where a.currentnode= {0} and not exisit (selete * from record as b where a.cargo_id = b.cargo_id and b.send_id>a.send_id)", currentnode);
+            string sql = string.Format("select DATE_FORMAT(a.time,'%Y-%m-%d') from record as a where a.action = {1} and a.currentnode= {0} and not exisit (selete * from record as b where a.cargo_id = b.cargo_id and b.send_id>a.send_id)", currentnode,action);
             return DBO.execute(sql);
         }
 
