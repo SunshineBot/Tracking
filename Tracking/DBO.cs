@@ -9,7 +9,7 @@ namespace Tracking
 {
     class DBO
     {
-        private static string connection="uid='root';pwd='root';database='tracing';server='127.0.0.1'";
+        private static string connection="uid='root';pwd='12345';database='tracing';server='127.0.0.1'";
         
         public static DataSet execute(string sql)
         {
@@ -21,7 +21,7 @@ namespace Tracking
 
         public static DataSet getRecord(string goods_id)
         {
-            string sql = string.Format("select time,a.name,b.name,action from record,node as a,node as b where cargo_id = {0} and currentnode= a.id and nextnode=b.id order by send_id desc", goods_id);
+            string sql = string.Format("select time,a.name,b.name,action from record,node as a,node as b where cargo_id = {0} and currentnode= a.id and nextnode=b.id order by send_id ", goods_id);
             return DBO.execute(sql);
         }
 

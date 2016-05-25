@@ -64,7 +64,7 @@ namespace Tracking
                     string info = "";
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
-                        DataRow dr = dt.Rows[0];
+                        DataRow dr = dt.Rows[i];
                         switch ((int)dr["action"])
                         {
                             case 0:
