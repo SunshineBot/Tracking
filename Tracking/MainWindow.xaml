@@ -4,7 +4,7 @@
         Title="物流跟踪系统" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" Width="960" Height="670"
         >
     <Window.Background>
-        <ImageBrush ImageSource="D:\visual studio project\tracing\Tracking\Tracking\res\index.png" />
+        <ImageBrush ImageSource="res\index.png" />
     </Window.Background>
     <Window.Resources>
         <ControlTemplate x:Key="CornerButton" TargetType="{x:Type Button}">
@@ -29,12 +29,12 @@
         </Grid.ColumnDefinitions>
         <Label x:Name="button_company" HorizontalAlignment="Left" Height="50" Margin="244,538,0,0" VerticalAlignment="Top" Width="150" MouseUp="button_company_MouseUp" MouseDown="button_company_MouseDwon" >
             <Label.Background>
-                <ImageBrush ImageSource="D:\visual studio project\tracing\Tracking\Tracking\res\button\company-hover.png"/>
+                <ImageBrush ImageSource="res\button\company-hover.png"/>
             </Label.Background>
         </Label>
         <Label x:Name="button_person" HorizontalAlignment="Left" Margin="580,538,0,0" VerticalAlignment="Top" Width="150" Height="50" MouseUp="button_person_MouseUp" MouseDown="button_person_MouseDown">
             <Label.Background>
-                <ImageBrush ImageSource="D:\visual studio project\tracing\Tracking\Tracking\res\button\person-hover.png"/>
+                <ImageBrush ImageSource="res\button\person-hover.png"/>
             </Label.Background>
         </Label>
 

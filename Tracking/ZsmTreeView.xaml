@@ -49,7 +49,7 @@
                     <TreeView.ItemTemplate>
                         <HierarchicalDataTemplate DataType="{x:Type local:TreeModel}"  ItemsSource="{Binding Children}">
                             <StackPanel  Margin="-2,0,0,0" Orientation="Horizontal" x:Name="staTree">
-                                <CheckBox ToolTip="{Binding ToolTip}" FontSize="14" FontFamily="微软雅黑" Tag="{Binding Children}" IsChecked="{Binding IsChecked, Mode=TwoWay}">
+                                <CheckBox ToolTip="{Binding ToolTip}" FontSize="14" FontFamily="微软雅黑" Tag="{Binding Children}" IsChecked="{Binding IsChecked, Mode=TwoWay}" Checked="treeItem_checked" Unchecked="treeItem_unchecked" >
                                     <StackPanel Orientation="Horizontal">
                                         <Image VerticalAlignment="Center" Source="{Binding Icon}" ></Image>
                                         <TextBlock Text="{Binding Name}"></TextBlock>

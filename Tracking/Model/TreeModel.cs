@@ -56,6 +56,19 @@ namespace Tracking.Model
         /// 类型：date==0/bill==1
         /// </summary>
         private int _type;
+        /// <summary>
+        /// 起点，当前结点，终点
+        /// </summary>
+        private int _src;
+        //private int _cur;
+        private int _dst;
+        /// <summary>
+        /// 运送节点信息
+        /// </summary>
+        public NextNode trackRoute{
+            get;
+            set;
+        }
         #endregion
 
         /// <summary>
@@ -221,6 +234,24 @@ namespace Tracking.Model
         {
             get { return _type; }
             set { _type = value; }
+        }
+
+        public int src
+        {
+            get { return _src; }
+            set { _src = value; }
+        }
+
+        //public int current
+        //{
+        //    get { return _cur; }
+        //    set { _cur = value; }
+        //}
+
+        public int dst
+        {
+            get { return _dst; }
+            set { _dst = value; }
         }
     }
 }

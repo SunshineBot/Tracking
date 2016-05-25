@@ -22,15 +22,25 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Tracking.Model;
 
 namespace Tracking
 {
+
+    public interface zsmTreeViewCallback
+    {
+        Boolean checkIt(TreeModel data);
+        Boolean uncheckIt(TreeModel data);
+    }
+
     /// <summary>
     /// ZsmTreeView.xaml 的交互逻辑
     /// </summary>
     public partial class ZsmTreeView : UserControl
     {
         #region 私有变量属性
+        private zsmTreeViewCallback callback;
+
         /// <summary>
         /// 控件数据
         /// </summary>
@@ -77,7 +87,6 @@ namespace Tracking
                     return 1;
                 }
             }
-
             return 0;
         }
         /// <summary>
@@ -197,7 +206,7 @@ namespace Tracking
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void menuUnSelectAll_Click(object sender, RoutedEventArgs e)
+        public void menuUnSelectAll_Click(object sender, RoutedEventArgs e)
         {
             foreach (Model.TreeModel tree in tvZsmTree.ItemsSource)
             {
@@ -227,5 +236,31 @@ namespace Tracking
 
             return source;
         }
+
+        private void treeItem_checked(object sender, RoutedEventArgs e)
+        {
+            //int i = 0;
+            //CheckBox checkBox = (CheckBox)sender;
+            //StackPanel panel = (StackPanel)checkBox.Content;
+            TreeModel data = (TreeModel)((StackPanel)((CheckBox)sender).Content).DataContext;
+            callback.checkIt(data);
+        }
+
+        private void treeItem_unchecked(object sender, RoutedEventArgs e)
+        {
+            TreeModel data = (TreeModel)((StackPanel)((CheckBox)sender).Content).DataContext;
+            callback.uncheckIt(data);
+        }
+
+        public ZsmTreeView setCallback(zsmTreeViewCallback callback)
+        {
+            this.callback = callback;
+            return this;
+        }
+
+        //internal void menuUnSelectAll_click()
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

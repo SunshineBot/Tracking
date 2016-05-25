@@ -3,15 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
+using Tracking.Model;
 
 namespace Tracking
 {
     public class RES
     {
         public const int TABLE_MAX = 3;
+        public const int ACTION = 4;
         public const int SITUATION = 0;
         public const int SENDING = 1;
         public const int ARRIVED = 2;
+        public const int SETTLED = 3;
 
         public const int LOC_MAX = 8;
         public const int BJ = 0;

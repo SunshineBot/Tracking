@@ -34,7 +34,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MySql.Data, Version=6.9.7.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="MySql.Data, Version=6.9.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -57,6 +57,7 @@
     <Compile Include="Model\TreeModel.cs" />
     <Compile Include="NextNode.cs" />
     <Compile Include="res.cs" />
+    <Compile Include="RunTimer.cs" />
     <Compile Include="window_company.xaml.cs" />
     <Compile Include="window_person.xaml.cs" />
     <Compile Include="window_send.xaml.cs" />
