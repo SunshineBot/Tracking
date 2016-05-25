@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -159,14 +160,19 @@ namespace Tracking
         {
             List<String> list = new List<String>();
             // todo : fill this method.
-            list.Add("2016-05-18");
+            //list.Add("2016-05-18");
             //list.Add("2016-05-17");
             //list.Add("2016-05-06");
             //list.Add("2016-04-18");
+            DataSet dataSet = DBO.getDate(Location, action);
+            foreach (DataRow row in dataSet.Tables["result"].Rows)
+            {
+                list.Add(row["date"].ToString());
+            }
             return list;
         }
 
-        private List<String> getBillListByDate(int Location, int table, String date)
+        private List<String> getBillListByDate(int Location, int action, String date)
         {
             List<String> list = new List<String>();
             // todo : fill this method.
@@ -174,6 +180,7 @@ namespace Tracking
             list.Add(String.Format("{0:D2}0202112543", Location));
             list.Add(String.Format("{0:D2}0202112344", Location));
             list.Add(String.Format("{0:D2}0302112322", Location));
+            DataSet dataSet = DBO.getRecord(date, action, Location);
             return list;
         }
 
