@@ -40,7 +40,7 @@ namespace Tracking
 
         public static DataSet getRecord(string time, int action, int cuttentnode)
         {
-            string sql = string.Format("select * from record as a where a.currentnode= {0} and a.action={1} and time like'{2}%' and not exisit (selete * from record as b where a.cargo_id = b.cargo_id and b.send_id>a.send_id)");
+            string sql = string.Format("select * from record as a where a.currentnode= {0} and a.action={1} and DATE_FORMAT(time,'%Y-%m-%d') like'{2}%' and not exists (select * from record as b where a.cargo_id = b.cargo_id and b.send_id>a.send_id)",cuttentnode,action,time);
             return DBO.execute(sql);
         }
 
