@@ -23,6 +23,7 @@ namespace Tracking
         {
             InitializeComponent();
             initSite();
+            initType();
         }
 
         public void initSite()
@@ -34,6 +35,42 @@ namespace Tracking
             receivesite.ItemsSource = ds.Tables[0].AsDataView();
             sendsite.SelectedIndex = 0;
             receivesite.SelectedIndex = 1;
+        }
+
+        public void initType()
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("name", Type.GetType("System.String"));
+            dt.Columns.Add("id", Type.GetType("System.String"));
+            DataRow dr = dt.NewRow();
+            dr["name"] = "食品";
+            dr["id"] = "1";
+            dt.Rows.Add(dr);
+
+            dr = dt.NewRow();
+            dr["name"] = "衣服";
+            dr["id"] = "2";
+            dt.Rows.Add(dr);
+
+
+            dr = dt.NewRow();
+            dr["name"] = "日用品";
+            dr["id"] = "3";
+            dt.Rows.Add(dr);
+
+            dr = dt.NewRow();
+            dr["name"] = "电子产品";
+            dr["id"] = "4";
+            dt.Rows.Add(dr);
+
+            dr = dt.NewRow();
+            dr["name"] = "书籍";
+            dr["id"] = "5";
+            dt.Rows.Add(dr);
+
+            type.DisplayMemberPath = "name";
+            type.ItemsSource = dt.AsDataView();
+            type.SelectedIndex = 0;
         }
 
         private void submit_Click(object sender, RoutedEventArgs e)
@@ -48,6 +85,7 @@ namespace Tracking
             dic.Add("sendsite", sendsite.SelectedIndex);
             dic.Add("receivesite", receivesite.SelectedIndex);
             dic.Add("price", "100");
+            dic.Add("type", type.SelectedIndex);
             string id=DBO.newGoods(dic);
             DBO.newRecord(id, (int)dic["sendsite"],(int)dic["receivesite"], 0);
             MessageBox.Show("请记住运单编号："+id, "发货成功");
