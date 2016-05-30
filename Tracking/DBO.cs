@@ -9,7 +9,7 @@ namespace Tracking
 {
     class DBO
     {
-        private static string connection="uid='root';pwd='12345';database='tracing';server='127.0.0.1'";
+        private static string connection="uid='root';pwd='root';database='tracing';server='127.0.0.1'";
         
         public static DataSet execute(string sql)
         {

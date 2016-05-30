@@ -15,6 +15,7 @@ namespace Tracking
         private Timer timer;
         private Distance[] nodes;
         private ZsmTreeView[][] treeList;
+        private System.Threading.SynchronizationContext sync;
         public window_company context
         {
             get;
@@ -25,6 +26,13 @@ namespace Tracking
             get { return timer.Enabled; }
             set { timer.Enabled = value; }
         }
+
+        public RunTimer setSynchronizationContext(System.Threading.SynchronizationContext sync)
+        {
+            this.sync = sync;
+            return this;
+        }
+
         public RunTimer(ZsmTreeView[][] treeList)
         {
             this.treeList = treeList;
@@ -51,29 +59,38 @@ namespace Tracking
 
         public void addToRunList(TreeModel data)
         {
-            int src = Int32.Parse(data.Name.Substring(0, 2));
-            int dst = Int32.Parse(data.Name.Substring(2, 2));
             data.trackRoute = nodes[data.src].getNextNode(data.dst);
         }
 
         private void OnTimerEvent(Object source, ElapsedEventArgs e)
         {
+            this.Enabled = false;
+            
+
+            if (runningList.Count() <= 0)
+                return;
+            foreach (Distance d in nodes)
+            {
+                d.calcMinDistance();
+            }
+            List<TreeModel> toRemove = new List<TreeModel>();
             foreach (TreeModel t in runningList)
             {
+                if (t.trackRoute == null)
+                    t.trackRoute = nodes[t.src].getNextNode(t.dst);
                 t.trackRoute.distance -= 100;
                 if (t.trackRoute.distance <= 0)
                 {
+                    this.Enabled = false;
                     //到达目的地
                     if (t.trackRoute.next == t.dst)
                     {
                         NextNode n = t.trackRoute;
                         //写入数据库
-                        DBO.newRecord(t.Name, t.trackRoute.current, t.trackRoute.next, 3);
+                        DBO.newRecord(t.Name, t.trackRoute.current, t.trackRoute.next, RES.ARRIVED);
                         //修改UI表项
                         ZsmTreeView currentTree = treeList[n.current][1];
                         ZsmTreeView nextTree = treeList[n.next][2];
-                        currentTree.tvZsmTree.BeginInit();
-                        nextTree.tvZsmTree.BeginInit();
                         foreach (TreeModel dateNode in currentTree.ItemsSourceData)
                         {
                             if (dateNode.Children.Contains(t))
@@ -101,30 +118,25 @@ namespace Tracking
                                 }
                             }
                         }
-                        foreach (ZsmTreeView[] trees in treeList)
-                        {
-                            trees[1].menuUnSelectAll_Click(null, null);
-                        }
-                        currentTree.tvZsmTree.EndInit();
-                        nextTree.tvZsmTree.EndInit();
-
-                        runningList.Remove(t);
+                        toRemove.Add(t);
+                        if (t.IsChecked)
+                            context.moveToArrivedCheckedList(t);
                     }
                     //到达下一站
                     else
                     {
                         NextNode n = nodes[t.trackRoute.next].getNextNode(t.dst);
                         //写入数据库
-                        DBO.newRecord(t.Name, t.trackRoute.current, t.trackRoute.next, 2);
+                        DBO.newRecord(t.Name, t.trackRoute.current, t.trackRoute.next, RES.SENDING);
                         //修改UI表项
-                        treeList[n.current][1].tvZsmTree.BeginInit();
-                        treeList[n.next][1].tvZsmTree.BeginInit();
-                        foreach (TreeModel dateNode in treeList[n.current][1].ItemsSourceData)
+                        ZsmTreeView currentTree = treeList[n.current][1];
+                        ZsmTreeView nextTree = treeList[n.next][1];
+                        foreach (TreeModel dateNode in treeList[t.trackRoute.current][1].ItemsSourceData)
                         {
                             if (dateNode.Children.Contains(t))
                             {
                                 dateNode.Children.Remove(t);
-                                IList<TreeModel> nextSource = treeList[n.next][1].ItemsSourceData;
+                                IList<TreeModel> nextSource = treeList[t.trackRoute.next][1].ItemsSourceData;
                                 int dateIndex = nextSource.Count();
                                 while(dateIndex-->0)
                                 {
@@ -146,17 +158,21 @@ namespace Tracking
                                 }
                             }
                         }
-                        foreach (ZsmTreeView[] trees in treeList)
-                        {
-                            trees[1].menuUnSelectAll_Click(null, null);
-                        }
-                        treeList[n.current][1].tvZsmTree.EndInit();
-                        treeList[n.next][1].tvZsmTree.EndInit();
                         //进入下一节点
                         t.trackRoute = n;
                     }
                 }
             }
+            foreach(TreeModel t in toRemove)
+                runningList.Remove(t);
+            this.Enabled = true;
+            foreach (ZsmTreeView[] trees in treeList)
+                foreach (ZsmTreeView tree in trees)
+                {
+                    sync.Post(context.startUpdateUI, tree);
+                    sync.Post(context.endUpdateUI, tree);
+                }
+                    
         }
     }
 }
