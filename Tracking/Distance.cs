@@ -58,6 +58,7 @@ namespace Tracking
 
         public NextNode getNextNode(int finalNode)
         {
+            
             foreach (NextNode node in S)
             {
                 if (node.next == finalNode)

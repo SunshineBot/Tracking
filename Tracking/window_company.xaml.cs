@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -87,6 +88,8 @@ namespace Tracking
             settledList = new List<TreeModel>();
             refreshTables();
             runTimer = new RunTimer(treeList);
+            runTimer.setSynchronizationContext(SynchronizationContext.Current);
+            runTimer.context = this;
             runTimer.runningList = sendingList;
         }
 
@@ -127,6 +130,7 @@ namespace Tracking
                                 t.src = Int32.Parse(billStr.Substring(0, 2)); ;
                                 //t.current = i;
                                 t.dst = Int32.Parse(billStr.Substring(2, 2));
+                                t.Parent = settledItem;
                                 settledItem.Children.Add(t);
                                 tList.ElementAt<List<TreeModel>>(j).Add(t);
                             }
@@ -142,9 +146,12 @@ namespace Tracking
                         {
                             TreeModel t = new TreeModel(billStr);
                             t.type = TreeModel.BILL;
-                            t.src = Int32.Parse(billStr.Substring(0, 2)); ;
+                            t.src = Int32.Parse(billStr.Substring(0, 2));
+                            //t.src = 0;
                             //t.current = i;
                             t.dst = Int32.Parse(billStr.Substring(2, 2));
+                            //t.dst = 3;
+                            t.Parent = tree;
                             tree.Children.Add(t);
                             tList.ElementAt<List<TreeModel>>(j).Add(t);
                         }
@@ -180,7 +187,7 @@ namespace Tracking
             list.Add(String.Format("{0:D2}0202112543", Location));
             list.Add(String.Format("{0:D2}0202112344", Location));
             list.Add(String.Format("{0:D2}0302112322", Location));
-            DataSet dataSet = DBO.getRecord(date, action, Location);
+            //DataSet dataSet = DBO.getRecord(date, action, Location);
             return list;
         }
 
@@ -236,6 +243,8 @@ namespace Tracking
 
         private void label_send_MouseUp(object sender, MouseButtonEventArgs e)
         {
+            // todo : 暂停timer
+            runTimer.Enabled = false;
             label_send.Background = new ImageBrush(new BitmapImage(
                 new Uri("res\\button\\send-hover.png", System.UriKind.Relative)));
             Distance[] Nodes = new Distance[RES.LOC_MAX];
@@ -247,20 +256,53 @@ namespace Tracking
             foreach (TreeModel t in sitCheckedList)
             {
                 //写入数据库
-                DBO.newRecord(t.Name, t.src, t.src, 2);     //此处存疑，该表项表示发货但是仍未到达第一站
+                //DBO.newRecord(t.Name, t.src, t.src, 2);     //此处存疑，该表项表示发货但是仍未到达第一站
                 //不需要写入数据库，实际发送操作有timer完成，这里只修改状态。
                 //修改逻辑表，从勾选状态进入发送状态
-                // todo : 暂停timer
-                runTimer.Enabled = false;
                 sendingList.Add(t);
-                // todo : 继续timer
-                runTimer.Enabled = true;
             }
             
             
             //修改界面表，将之从仓库表移至运送中表
             //移除同样属于发送操作，交由timer完成。
-
+            //修改UI表结构
+            List<TreeModel> bills = new List<TreeModel>();
+            foreach (ZsmTreeView[] trees in treeList)
+            {
+                ZsmTreeView tree = trees[0];
+                tree.tvZsmTree.BeginInit();
+                for (int i = 0; i < tree.ItemsSourceData.Count(); i++)
+                {
+                    IList<TreeModel> childrenList = tree.ItemsSourceData.ElementAt<TreeModel>(i).Children;
+                    foreach (TreeModel t in sitCheckedList)
+                    {
+                        if (childrenList.Contains(t))
+                        {
+                            childrenList.Remove(t);
+                            int dateIndex = trees[1].ItemsSourceData.Count();
+                            while (dateIndex-- > 0)
+                            {
+                                TreeModel date2 = trees[1].ItemsSourceData.ElementAt<TreeModel>(dateIndex);
+                                if (t.Parent.Name.Equals(date2.Name))
+                                    break;
+                            }
+                            if (dateIndex == -1)
+                            {
+                                TreeModel newDate = new TreeModel(t.Parent.Name);
+                                newDate.type = TreeModel.DATE;
+                                newDate.Children = new List<TreeModel>();
+                                newDate.Children.Add(t);
+                                trees[1].ItemsSourceData.Add(newDate);
+                            }
+                            else
+                            {
+                                trees[1].ItemsSourceData.ElementAt<TreeModel>(dateIndex).Children.Add(t);
+                            }
+                        }
+                    }
+                }
+                tree.tvZsmTree.EndInit();
+            }
             //取消所有勾选
             foreach (ZsmTreeView[] trees in treeList)
             {
@@ -268,6 +310,8 @@ namespace Tracking
             }
             //从逻辑表中移除他们
             sitCheckedList.RemoveRange(0, arrivedCheckedList.Count());
+            // todo : 继续timer
+            runTimer.Enabled = true;
         }
 
         private void label_settle_MouseDown(object sender, MouseButtonEventArgs e)
@@ -336,6 +380,20 @@ namespace Tracking
             this.Close();
         }
 
-        
+        public void startUpdateUI(object o)
+        {
+            ((ZsmTreeView)o).tvZsmTree.BeginInit();
+        }
+
+        public void endUpdateUI(object o)
+        {
+            ((ZsmTreeView)o).tvZsmTree.EndInit();
+        }
+
+        public void moveToArrivedCheckedList(TreeModel t)
+        {
+            arrivedList.Remove(t);
+            arrivedCheckedList.Add(t);
+        }
     }
 }
