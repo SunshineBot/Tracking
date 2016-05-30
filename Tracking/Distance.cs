@@ -64,13 +64,7 @@ namespace Tracking
                 if (node.next == finalNode)
                 {
                     return new NextNode(currentNode, node.dirs[0], getDistance(currentNode, node.dirs[0]));
-                    //foreach (NextNode n in S)
-                    //{
-                    //    if(n.next == node.dirs[0])
-                    //        return new NextNode(currentNode, node.next, n.distance);
-                    //}
                 }
-                    
             }
             return new NextNode();
         }
@@ -164,11 +158,7 @@ namespace Tracking
             }
             return minNode;
         }
-        //private void addToList(LinkedList<NextNode> nodeList, LinkedList<int> edges, int node, int dist)
-        //{
-        //    if (edges.Contains<int>(node))
-        //        nodeList.AddLast(new NextNode(node, dist));
-        //}
+
         private static void setIt(NextNode nodeU, NextNode thisNode, int city, int distance)
         {
             if (nodeU.next != thisNode.next && nodeU.next == city)

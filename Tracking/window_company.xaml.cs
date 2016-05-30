@@ -119,11 +119,11 @@ namespace Tracking
                     {
                         TreeModel settledItem = new TreeModel("已结算");
                         settledItem.type = TreeModel.DATE;
-                        //List<String> settledDateList = getDateList(i, j + 1);
-                        foreach (String dateStr in getDateList(i, j + 1))
+                        List<String> settledDateList = getDateList(i, j + 1);
+                        foreach (String dateStr in settledDateList)
                         {
-                            //IList<String> billList = getBillListByDate(i, j + 1, dateStr);
-                            foreach (String billStr in getBillListByDate(i, j + 1, dateStr))
+                            IList<String> billList = getBillListByDate(i, j + 1, dateStr);
+                            foreach (String billStr in billList)
                             {
                                 TreeModel t = new TreeModel(billStr);
                                 t.type = TreeModel.BILL;
@@ -166,11 +166,6 @@ namespace Tracking
         private List<String> getDateList(int Location, int action)
         {
             List<String> list = new List<String>();
-            // todo : fill this method.
-            //list.Add("2016-05-18");
-            //list.Add("2016-05-17");
-            //list.Add("2016-05-06");
-            //list.Add("2016-04-18");
             DataSet dataSet = DBO.getDate(Location, action);
             foreach (DataRow row in dataSet.Tables["result"].Rows)
             {
@@ -182,12 +177,11 @@ namespace Tracking
         private List<String> getBillListByDate(int Location, int action, String date)
         {
             List<String> list = new List<String>();
-            // todo : fill this method.
-            list.Add(String.Format("{0:D2}0202112313", Location));
-            list.Add(String.Format("{0:D2}0202112543", Location));
-            list.Add(String.Format("{0:D2}0202112344", Location));
-            list.Add(String.Format("{0:D2}0302112322", Location));
-            //DataSet dataSet = DBO.getRecord(date, action, Location);
+            DataSet dataSet = DBO.getRecord(date, action, Location);
+            foreach (DataRow row in dataSet.Tables["result"].Rows)
+            {
+                list.Add(row["cargo_id"].ToString());
+            }
             return list;
         }
 
@@ -261,8 +255,6 @@ namespace Tracking
                 //修改逻辑表，从勾选状态进入发送状态
                 sendingList.Add(t);
             }
-            
-            
             //修改界面表，将之从仓库表移至运送中表
             //移除同样属于发送操作，交由timer完成。
             //修改UI表结构
@@ -329,7 +321,7 @@ namespace Tracking
             foreach (TreeModel t in arrivedCheckedList)
             {
                 //写入数据库
-                //DBO.newRecord(t.Name, t.current, t.current, 4);
+                DBO.newRecord(t.Name, t.trackRoute.next, t.trackRoute.next, RES.SETTLED);
                 //修改逻辑表，从勾选状态进入已结算状态
                 //arrivedCheckedList.Remove(t);
                 settledList.Add(t);

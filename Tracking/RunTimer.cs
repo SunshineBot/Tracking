@@ -59,8 +59,6 @@ namespace Tracking
 
         public void addToRunList(TreeModel data)
         {
-            //int src = Int32.Parse(data.Name.Substring(0, 2));
-            //int dst = Int32.Parse(data.Name.Substring(2, 2));
             data.trackRoute = nodes[data.src].getNextNode(data.dst);
         }
 
@@ -89,14 +87,10 @@ namespace Tracking
                     {
                         NextNode n = t.trackRoute;
                         //写入数据库
-                        //DBO.newRecord(t.Name, t.trackRoute.current, t.trackRoute.next, 3);
+                        DBO.newRecord(t.Name, t.trackRoute.current, t.trackRoute.next, RES.ARRIVED);
                         //修改UI表项
                         ZsmTreeView currentTree = treeList[n.current][1];
                         ZsmTreeView nextTree = treeList[n.next][2];
-                        //sync.Post(context.startUpdateUI, currentTree);
-                        //sync.Post(context.startUpdateUI, nextTree);
-                        //currentTree.tvZsmTree.BeginInit();
-                        //nextTree.tvZsmTree.BeginInit();
                         foreach (TreeModel dateNode in currentTree.ItemsSourceData)
                         {
                             if (dateNode.Children.Contains(t))
@@ -124,10 +118,6 @@ namespace Tracking
                                 }
                             }
                         }
-                        //foreach (ZsmTreeView[] trees in treeList)
-                        //{
-                        //    trees[1].menuUnSelectAll_Click(null, null);
-                        //}
                         toRemove.Add(t);
                         if (t.IsChecked)
                             context.moveToArrivedCheckedList(t);
@@ -137,10 +127,8 @@ namespace Tracking
                     {
                         NextNode n = nodes[t.trackRoute.next].getNextNode(t.dst);
                         //写入数据库
-                        //DBO.newRecord(t.Name, t.trackRoute.current, t.trackRoute.next, 2);
+                        DBO.newRecord(t.Name, t.trackRoute.current, t.trackRoute.next, RES.SENDING);
                         //修改UI表项
-                        //treeList[n.current][1].tvZsmTree.BeginInit();
-                        //treeList[n.next][1].tvZsmTree.BeginInit();
                         ZsmTreeView currentTree = treeList[n.current][1];
                         ZsmTreeView nextTree = treeList[n.next][1];
                         foreach (TreeModel dateNode in treeList[t.trackRoute.current][1].ItemsSourceData)
@@ -170,10 +158,6 @@ namespace Tracking
                                 }
                             }
                         }
-                        //foreach (ZsmTreeView[] trees in treeList)
-                        //{
-                        //    trees[1].menuUnSelectAll_Click(null, null);
-                        //}
                         //进入下一节点
                         t.trackRoute = n;
                     }
@@ -182,9 +166,6 @@ namespace Tracking
             foreach(TreeModel t in toRemove)
                 runningList.Remove(t);
             this.Enabled = true;
-            //foreach (ZsmTreeView[] trees in treeList)
-            //    foreach (ZsmTreeView tree in trees)
-            //        sync.Post(context.startUpdateUI, tree);
             foreach (ZsmTreeView[] trees in treeList)
                 foreach (ZsmTreeView tree in trees)
                 {
