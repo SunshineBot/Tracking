@@ -34,7 +34,7 @@ namespace Tracking
 
         public static DataSet getDate(int currentnode, int action)
         {
-            string sql = string.Format("select DATE_FORMAT(a.time,'%Y-%m-%d') as date from record as a where a.action = {1} and a.currentnode= {0} and not exists (select * from record as b where a.cargo_id = b.cargo_id and b.send_id>a.send_id)", currentnode,action);
+            string sql = string.Format("select distinct DATE_FORMAT(a.time,'%Y-%m-%d') as date from record as a where a.action = {1} and a.currentnode= {0} and not exists (select * from record as b where a.cargo_id = b.cargo_id and b.send_id>a.send_id)", currentnode,action);
             return DBO.execute(sql);
         }
 
