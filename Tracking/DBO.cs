@@ -21,14 +21,14 @@ namespace Tracking
 
         public static DataSet getRecord(string goods_id)
         {
-            string sql = string.Format("select time,a.name,b.name,action from record,node as a,node as b where cargo_id = {0} and currentnode= a.id and nextnode=b.id order by send_id ", goods_id);
+            string sql = string.Format("select time,a.name,b.name,action from record,node as a,node as b where cargo_id = '{0}' and currentnode= a.id and nextnode=b.id order by send_id ", goods_id);
             return DBO.execute(sql);
         }
 
         public static void newRecord(string goods_id, int currentnode, int nextnode, int action)
         {
             object[] args = { goods_id, currentnode, nextnode, action, goods_id };
-            string sql = string.Format("insert into record (cargo_id,time,currentnode,nextnode,action,send_id) values ({0},now(),{1},{2},{3},(select count(*) from record as b where cargo_id={4}))", args);
+            string sql = string.Format("insert into record (cargo_id,time,currentnode,nextnode,action,send_id) values ('{0}',now(),{1},{2},{3},(select count(*) from record as b where cargo_id='{4}'))", args);
             DBO.execute(sql);
         }
 
@@ -48,15 +48,16 @@ namespace Tracking
         {
             try
             {
-                string sql = string.Format("insert into goods(id,sender,senderaddr,receiver,receiverphone,senderphone,time,price,receiveraddr,sendnode,receivenode) values ((select count(*) from goods as b),'{0}','{1}','{2}','{3}','{4}',now(),'{5}','{6}',{7},{8})",
-                    new object[] { (string)args["sendername"],(string)args["senderaddr"] ,(string)args["receivername"],(string)args["receiverphone"],(string)args["senderphone"],(string)args["price"], (string)args["receiveraddr"],args["sendsite"],args["receivesite"]});
+                string sql = string.Format("insert into goods(id,sender,senderaddr,receiver,receiverphone,senderphone,time,price,receiveraddr,sendnode,receivenode,type) values (concat(lpad({7},2,'0'),lpad({8},2,'0'),lpad({10},2,'0'),lpad((select count(*) from goods as b where b.type = '{10}'),6,'0')),'{0}','{1}','{2}','{3}','{4}',now(),'{5}','{6}',{7},{8},{9})",
+                    new object[] { (string)args["sendername"],(string)args["senderaddr"] ,(string)args["receivername"],(string)args["receiverphone"],(string)args["senderphone"],(string)args["price"], (string)args["receiveraddr"],args["sendsite"],args["receivesite"],args["type"],args["type"]});
                execute(sql);
+               sql = "select id from goods order by time desc limit 1";
+               return (string)execute(sql).Tables[0].Rows[0][0];
             }
             catch(Exception )
             {
                 throw new Exception();
             }
-            return ""+execute("select last_insert_id() from goods").Tables[0].Rows[0][0];
         }
 
         public static DataSet getNode()
@@ -64,5 +65,6 @@ namespace Tracking
             string sql = "select id, name from node";
             return execute(sql);
         }
+
     }
 }

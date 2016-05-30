@@ -1,12 +1,12 @@
 ﻿<Window x:Class="Tracking.Window_person"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="个人功能" Height="400" Width="500">
+        Title="个人功能" Height="437" Width="500">
     <!--<Window.Background>
         <ImageBrush ImageSource="res/company_function.png"/>
     </Window.Background>-->
     <Grid>
-        <TabControl HorizontalAlignment="Left" Height="349" Margin="10,10,0,0" VerticalAlignment="Top" Width="472">
+        <TabControl HorizontalAlignment="Left" Height="386" Margin="10,10,0,0" VerticalAlignment="Top" Width="472">
             <TabItem Header="发货" Width="50" >
                 <Grid Background="#FFE5E5E5">
                     <Label Content="寄件人姓名：" HorizontalAlignment="Left" Height="25" Margin="10,10,0,0" VerticalAlignment="Top" Width="75"/>
@@ -25,7 +25,9 @@
                     <Label Content="收货站点：" HorizontalAlignment="Left" Height="25" Margin="10,220,0,0" VerticalAlignment="Top" Width="75"/>
                     <ComboBox x:Name="sendsite" HorizontalAlignment="Left" Height="25" Margin="100,190,0,0" VerticalAlignment="Top" Width="255"/>
                     <ComboBox x:Name="receivesite" HorizontalAlignment="Left" Height="25" Margin="100,220,0,0" VerticalAlignment="Top" Width="255"/>
-                    <Button x:Name="submit" Content="提交" HorizontalAlignment="Left" Height="40" Margin="136,270,0,0" VerticalAlignment="Top" Width="200" Click="submit_Click"/>
+                    <Button x:Name="submit" Content="提交" HorizontalAlignment="Left" Height="40" Margin="134,293,0,0" VerticalAlignment="Top" Width="200" Click="submit_Click"/>
+                    <Label Content="货物类型:" HorizontalAlignment="Left" Height="25" Margin="10,252,0,0" VerticalAlignment="Top" Width="75"/>
+                    <ComboBox x:Name="type" HorizontalAlignment="Left" Height="25" Margin="100,251,0,0" VerticalAlignment="Top" Width="255"/>
                 </Grid>
             </TabItem>
             <TabItem Header="查询" Width="50">
