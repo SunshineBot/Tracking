@@ -37,6 +37,7 @@
     <Reference Include="MySql.Data, Version=6.9.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -108,7 +109,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
@@ -121,117 +122,48 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="res\button\back-click.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="res\button\back-hover.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="res\button\back-simple.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="res\button\click.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="res\button\click2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="res\button\company-click.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="res\button\company-hover.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="res\button\company-simple.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="res\button\hover.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="res\button\hover2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="res\button\ineedpost-click.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="res\button\ineedpost-hover.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="res\button\ineedpost-simple.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="res\button\person-click.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="res\button\person-hover.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="res\button\person-simple.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="res\button\post-click.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="res\button\post-hover.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="res\button\post-simple.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="res\button\query-click.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="res\button\query-hover.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="res\button\query-simple.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="res\button\send-click.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="res\button\send-hover.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="res\button\send-simple.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="res\button\settle-click.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="res\button\settle-hover.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="res\button\settle-simple.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="res\button\simple.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="res\button\simple2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="res\company_function.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="res\ico.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="res\index.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="res\person_inquiry.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="res\person_send.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="distanceMatrix.txt" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="res\button\back-click.png" />
+    <Resource Include="res\button\back-hover.png" />
+    <Resource Include="res\button\back-simple.png" />
+    <Resource Include="res\button\click.png" />
+    <Resource Include="res\button\click2.png" />
+    <Resource Include="res\button\company-click.png" />
+    <Resource Include="res\button\company-hover.png" />
+    <Resource Include="res\button\company-simple.png" />
+    <Resource Include="res\button\hover.png" />
+    <Resource Include="res\button\hover2.png" />
+    <Resource Include="res\button\ineedpost-click.png" />
+    <Resource Include="res\button\ineedpost-hover.png" />
+    <Resource Include="res\button\ineedpost-simple.png" />
+    <Resource Include="res\button\person-click.png" />
+    <Resource Include="res\button\person-hover.png" />
+    <Resource Include="res\button\person-simple.png" />
+    <Resource Include="res\button\post-click.png" />
+    <Resource Include="res\button\post-hover.png" />
+    <Resource Include="res\button\post-simple.png" />
+    <Resource Include="res\button\query-click.png" />
+    <Resource Include="res\button\query-hover.png" />
+    <Resource Include="res\button\query-simple.png" />
+    <Resource Include="res\button\send-click.png" />
+    <Resource Include="res\button\send-hover.png" />
+    <Resource Include="res\button\send-simple.png" />
+    <Resource Include="res\button\settle-click.png" />
+    <Resource Include="res\button\settle-hover.png" />
+    <Resource Include="res\button\settle-simple.png" />
+    <Resource Include="res\button\simple.png" />
+    <Resource Include="res\button\simple2.png" />
+    <Resource Include="res\company_function.png" />
+    <Resource Include="res\ico.png" />
+    <Resource Include="res\index.png" />
+    <Resource Include="res\person_inquiry.png" />
+    <Resource Include="res\person_send.png" />
     <Resource Include="距离矩阵.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\back_click.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

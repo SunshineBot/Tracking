@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -57,14 +58,21 @@ namespace Tracking
 
         private void button_company_MouseDwon(object sender, MouseButtonEventArgs e)
         {
-            button_company.Background = new ImageBrush(new BitmapImage(
-                new Uri("res\\button\\company-click.png", System.UriKind.Relative)));
+            IntPtr bitmap = global::Tracking.Properties.Resources.company_click.GetHbitmap();
+            ImageSource source = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(
+                bitmap, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+            button_company.Background = new ImageBrush(source);
+            
         }
 
         private void button_company_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            button_company.Background = new ImageBrush(new BitmapImage(
-                new Uri("res\\button\\company-hover.png", System.UriKind.Relative)));
+            //button_company.Background = new ImageBrush(new BitmapImage(
+            //    new Uri("res\\button\\company-hover.png", System.UriKind.Relative)));
+            IntPtr bitmap = global::Tracking.Properties.Resources.company_hover.GetHbitmap();
+            ImageSource source = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(
+                bitmap, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+            button_company.Background = new ImageBrush(source);
             window_company win_com = new window_company(this);
             win_com.Show();
             this.Hide();
@@ -72,14 +80,22 @@ namespace Tracking
 
         private void button_person_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            button_person.Background = new ImageBrush(new BitmapImage(
-                new Uri("res\\button\\person-click.png", System.UriKind.Relative)));
+            //button_person.Background = new ImageBrush(new BitmapImage(
+            //    new Uri("res\\button\\person-click.png", System.UriKind.Relative)));
+            IntPtr bitmap = global::Tracking.Properties.Resources.person_click.GetHbitmap();
+            ImageSource source = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(
+                bitmap, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+            button_person.Background = new ImageBrush(source);
         }
 
         private void button_person_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            button_person.Background = new ImageBrush(new BitmapImage(
-                new Uri("res\\button\\person-hover.png", System.UriKind.Relative)));
+            //button_person.Background = new ImageBrush(new BitmapImage(
+            //    new Uri("res\\button\\person-hover.png", System.UriKind.Relative)));
+            IntPtr bitmap = global::Tracking.Properties.Resources.person_hover.GetHbitmap();
+            ImageSource source = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(
+                bitmap, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+            button_person.Background = new ImageBrush(source);
             Window_person win_per = new Window_person();
             win_per.Show();
             //this.Hide();
