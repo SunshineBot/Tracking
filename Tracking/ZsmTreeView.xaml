@@ -61,6 +61,11 @@
                                                     <Image Source="res/ico.png" />
                                                 </MenuItem.Icon>
                                             </MenuItem>
+                                            <MenuItem Name="queryIt" Header="查询物流信息" Click="queryIt_Click">
+                                                <MenuItem.Icon>
+                                                    <Image Source="res/ico.png" />
+                                                </MenuItem.Icon>
+                                            </MenuItem>
                                         </ContextMenu>
                                     </CheckBox.ContextMenu>
                                 </CheckBox>
