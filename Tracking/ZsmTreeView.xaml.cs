@@ -258,18 +258,9 @@ namespace Tracking
             return this;
         }
 
-        private void queryIt_Click(object sender, RoutedEventArgs e)
-        {
-            TreeModel t = (TreeModel)tvZsmTree.SelectedItem;
-            if (t.type == TreeModel.BILL)
-            {
-                //todo : call it by t.name
-            }
-            else
-            {
-                MessageBox.Show("请选择一个有效的订单！", "提示", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-        }
-
+        //internal void menuUnSelectAll_click()
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

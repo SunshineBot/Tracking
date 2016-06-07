@@ -19,8 +19,10 @@ namespace Tracking
     /// </summary>
     public partial class Window_person : Window
     {
-        public Window_person()
+        private Window main;
+        public Window_person( Window main)
         {
+            this.main = main;
             InitializeComponent();
             initSite();
             initType();
@@ -73,25 +75,8 @@ namespace Tracking
             type.SelectedIndex = 0;
         }
 
-        private void submit_Click(object sender, RoutedEventArgs e)
-        {
-            Dictionary<string, object> dic = new Dictionary<string, object>();
-            dic.Add("sendername", sendername.Text);
-            dic.Add("senderaddr", senderaddr.Text);
-            dic.Add("senderphone", senderphone.Text);
-            dic.Add("receivername", receivername.Text);
-            dic.Add("receiveraddr", receiveraddr.Text);
-            dic.Add("receiverphone", receiverphone.Text);
-            dic.Add("sendsite", sendsite.SelectedIndex);
-            dic.Add("receivesite", receivesite.SelectedIndex);
-            dic.Add("price", "100");
-            dic.Add("type", type.SelectedIndex);
-            string id=DBO.newGoods(dic);
-            DBO.newRecord(id, (int)dic["sendsite"],(int)dic["receivesite"], 0);
-            MessageBox.Show("请记住运单编号："+id, "发货成功");
-        }
-
-        private void search_Click(object sender, RoutedEventArgs e)
+       
+        private void showmsg()
         {
             try
             {
@@ -123,6 +108,7 @@ namespace Tracking
                 }
                 else
                 {
+                   //info_textblock.Text = "暂时没有该包裹的记录，请核对物流编号";
                     MessageBox.Show("暂时没有该包裹的记录，请核对物流编号", "系统提示");
                 }
             }
@@ -130,6 +116,46 @@ namespace Tracking
             {
                 Console.Write(ex.ToString());
             }
+        }
+
+        private void search_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            search.Background = new ImageBrush(new BitmapImage(new Uri("D:\\visual studio project\\tracing\\Tracking\\Tracking\\res\\button\\query-click.png",System.UriKind.Relative)));
+        }
+
+        private void search_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            search.Background = new ImageBrush(new BitmapImage(new Uri("D:\\visual studio project\\tracing\\Tracking\\Tracking\\res\\button\\query-hover.png",System.UriKind.Relative)));
+            showmsg();
+        }
+
+        private void submit_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            submit.Background = new ImageBrush(new BitmapImage(new Uri("D:\\visual studio project\\tracing\\Tracking\\Tracking\\res\\button\\post-click.png", System.UriKind.Relative)));
+        }
+
+        private void submit_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            submit.Background = new ImageBrush(new BitmapImage(new Uri("D:\\visual studio project\\tracing\\Tracking\\Tracking\\res\\button\\post-hover.png", System.UriKind.Relative)));
+            Dictionary<string, object> dic = new Dictionary<string, object>();
+            dic.Add("sendername", sendername.Text);
+            dic.Add("senderaddr", senderaddr.Text);
+            dic.Add("senderphone", senderphone.Text);
+            dic.Add("receivername", receivername.Text);
+            dic.Add("receiveraddr", receiveraddr.Text);
+            dic.Add("receiverphone", receiverphone.Text);
+            dic.Add("sendsite", sendsite.SelectedIndex);
+            dic.Add("receivesite", receivesite.SelectedIndex);
+            dic.Add("price", "100");
+            dic.Add("type", type.SelectedIndex);
+            string id = DBO.newGoods(dic);
+            DBO.newRecord(id, (int)dic["sendsite"], (int)dic["receivesite"], 0);
+            MessageBox.Show("请记住运单编号：" + id, "发货成功");
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            main.Show();
         }
     }
 }
