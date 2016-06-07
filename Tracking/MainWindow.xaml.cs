@@ -72,17 +72,17 @@ namespace Tracking
 
         private void button_person_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            button_person.Background = new ImageBrush(new BitmapImage(
-                new Uri("res\\button\\person-click.png", System.UriKind.Relative)));
+            //button_person.Background = new ImageBrush(new BitmapImage(
+            //    new Uri("res\\button\\person-click.png", System.UriKind.Relative)));
         }
 
         private void button_person_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            button_person.Background = new ImageBrush(new BitmapImage(
-                new Uri("res\\button\\person-hover.png", System.UriKind.Relative)));
-            Window_person win_per = new Window_person();
+            //button_person.Background = new ImageBrush(new BitmapImage(
+            //    new Uri("res\\button\\person-hover.png", System.UriKind.Relative)));
+            Window_person win_per = new Window_person(this);
             win_per.Show();
-            //this.Hide();
+            this.Hide();
         }
 
     }
