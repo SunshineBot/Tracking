@@ -132,7 +132,7 @@ namespace Tracking
                                 t.dst = Int32.Parse(billStr.Substring(2, 2));
                                 t.Parent = settledItem;
                                 settledItem.Children.Add(t);
-                                tList.ElementAt<List<TreeModel>>(j).Add(t);
+                                tList.ElementAt<List<TreeModel>>(j + 1).Add(t);
                             }
                         }
                         content.Add(settledItem);
@@ -231,16 +231,25 @@ namespace Tracking
 
         private void label_send_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            label_send.Background = new ImageBrush(new BitmapImage(
-                new Uri("res\\button\\send-click.png", System.UriKind.Relative)));
+            //label_send.Background = new ImageBrush(new BitmapImage(
+            //    new Uri("res\\button\\send-click.png", System.UriKind.Relative)));
+            IntPtr bitmap = global::Tracking.Properties.Resources.send_click.GetHbitmap();
+            ImageSource source = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(
+                bitmap, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+            label_send.Background = new ImageBrush(source);
         }
 
         private void label_send_MouseUp(object sender, MouseButtonEventArgs e)
         {
             // todo : 暂停timer
             runTimer.Enabled = false;
-            label_send.Background = new ImageBrush(new BitmapImage(
-                new Uri("res\\button\\send-hover.png", System.UriKind.Relative)));
+            //label_send.Background = new ImageBrush(new BitmapImage(
+                //new Uri("res\\button\\send-hover.png", System.UriKind.Relative)));
+            IntPtr bitmap = global::Tracking.Properties.Resources.send_hover.GetHbitmap();
+            ImageSource source = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(
+                bitmap, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+            label_send.Background = new ImageBrush(source);
+
             Distance[] Nodes = new Distance[RES.LOC_MAX];
             for (int i = 0; i < Nodes.Length; i++)
             {
@@ -308,15 +317,23 @@ namespace Tracking
 
         private void label_settle_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            label_settle.Background = new ImageBrush(new BitmapImage(
-                new Uri("res\\button\\settle-click.png", System.UriKind.Relative)));
+            //label_settle.Background = new ImageBrush(new BitmapImage(
+            //    new Uri("res\\button\\settle-click.png", System.UriKind.Relative)));
+            IntPtr bitmap = global::Tracking.Properties.Resources.settle_click.GetHbitmap();
+            ImageSource source = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(
+                bitmap, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+            label_settle.Background = new ImageBrush(source);
         }
 
         private void label_settle_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            label_settle.Background = new ImageBrush(new BitmapImage(
-                new Uri("res\\button\\settle-hover.png", System.UriKind.Relative)));
-            
+            //label_settle.Background = new ImageBrush(new BitmapImage(
+            //    new Uri("res\\button\\settle-hover.png", System.UriKind.Relative)));
+            IntPtr bitmap = global::Tracking.Properties.Resources.settle_hover.GetHbitmap();
+            ImageSource source = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(
+                bitmap, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+            label_settle.Background = new ImageBrush(source);
+
             //修改逻辑表项
             foreach (TreeModel t in arrivedCheckedList)
             {
@@ -361,14 +378,22 @@ namespace Tracking
 
         private void label_back_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            label_back.Background = new ImageBrush(new BitmapImage(
-                new Uri("res\\button\\back-click.png", System.UriKind.Relative)));
+            //label_back.Background = new ImageBrush(new BitmapImage(
+            //    new Uri("res\\button\\back-click.png", System.UriKind.Relative)));
+            IntPtr bitmap = global::Tracking.Properties.Resources.back_click.GetHbitmap();
+            ImageSource source = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(
+                bitmap, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+            label_back.Background = new ImageBrush(source);
         }
 
         private void label_back_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            label_back.Background = new ImageBrush(new BitmapImage(
-                new Uri("res\\button\\back-hover.png", System.UriKind.Relative)));
+            //label_back.Background = new ImageBrush(new BitmapImage(
+            //    new Uri("res\\button\\back-hover.png", System.UriKind.Relative)));
+            IntPtr bitmap = global::Tracking.Properties.Resources.back_hover.GetHbitmap();
+            ImageSource source = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(
+                bitmap, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+            label_back.Background = new ImageBrush(source);
             this.Close();
         }
 

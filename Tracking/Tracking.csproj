@@ -55,6 +55,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="logistics_info.xaml.cs">
+      <DependentUpon>logistics_info.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Model\TreeModel.cs" />
     <Compile Include="NextNode.cs" />
     <Compile Include="res.cs" />
@@ -63,6 +66,10 @@
     <Compile Include="window_person.xaml.cs" />
     <Compile Include="window_send.xaml.cs" />
     <Compile Include="ZsmTreeView.xaml.cs" />
+    <Page Include="logistics_info.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
