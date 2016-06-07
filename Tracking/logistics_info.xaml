@@ -1,0 +1,13 @@
+﻿<Window x:Class="Tracking.logistics_info"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="物流信息" Height="437" Width="500">
+    <!--<Window.Background>
+        <ImageBrush ImageSource="D:\visual studio project\tracing\Tracking\Tracking\res\person_inquiry.png"></ImageBrush>
+    </Window.Background>-->
+    <Grid>
+        <Label Content="单号：" HorizontalAlignment="Left" Height="25" Margin="10,10,0,0" VerticalAlignment="Top" Width="50"/>
+        <TextBox x:Name="goodsid" IsEnabled="False" HorizontalAlignment="Left" Height="25" Margin="60,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="249" VerticalContentAlignment="Center" />
+        <TextBlock HorizontalAlignment="Left" x:Name="info_textblock" Height="323" Margin="20,51,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="436"/>
+    </Grid>
+</Window>
