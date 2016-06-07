@@ -30,7 +30,7 @@
                     <ComboBox x:Name="receivesite" HorizontalAlignment="Left" Height="25" Margin="178,344,0,0" VerticalAlignment="Top" Width="255"/>
                     <Label x:Name="submit" Content=""  HorizontalAlignment="Left" Height="30" Margin="247,420,0,0" VerticalAlignment="Top" Width="100" MouseDown="submit_MouseDown" MouseUp="submit_MouseUp">
                         <Label.Background>
-                            <ImageBrush ImageSource="D:\visual studio project\tracing\Tracking\Tracking\res\button\send-hover.png"></ImageBrush>
+                            <ImageBrush ImageSource="D:\visual studio project\tracing\Tracking\Tracking\res\button\post-hover.png"></ImageBrush>
                         </Label.Background>
                     </Label>
                     <Label Content="货物类型:" HorizontalAlignment="Left" Height="25" Margin="88,376,0,0" VerticalAlignment="Top" Width="75"/>

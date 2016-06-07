@@ -131,12 +131,12 @@ namespace Tracking
 
         private void submit_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            submit.Background = new ImageBrush(new BitmapImage(new Uri("D:\\visual studio project\\tracing\\Tracking\\Tracking\\res\\button\\send-click.png", System.UriKind.Relative)));
+            submit.Background = new ImageBrush(new BitmapImage(new Uri("D:\\visual studio project\\tracing\\Tracking\\Tracking\\res\\button\\post-click.png", System.UriKind.Relative)));
         }
 
         private void submit_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            submit.Background = new ImageBrush(new BitmapImage(new Uri("D:\\visual studio project\\tracing\\Tracking\\Tracking\\res\\button\\send-hover.png", System.UriKind.Relative)));
+            submit.Background = new ImageBrush(new BitmapImage(new Uri("D:\\visual studio project\\tracing\\Tracking\\Tracking\\res\\button\\post-hover.png", System.UriKind.Relative)));
             Dictionary<string, object> dic = new Dictionary<string, object>();
             dic.Add("sendername", sendername.Text);
             dic.Add("senderaddr", senderaddr.Text);
