@@ -14,12 +14,22 @@ namespace Tracking
         public static readonly int[][] distanceMatrix;
         static Distance(){
             //todo : 从文件读取距离矩阵。
-            StreamReader file = new StreamReader(@"distanceMatrix.txt");
+            String[] originStr = global::Tracking.Properties.Resources.distanceMatrix.Split(new char[] { '\n' });
             String[][] strArray = new String[RES.LOC_MAX][];
             distanceMatrix = new int[RES.LOC_MAX][];
+            //foreach (String s in originStr)
+            //{
+            //    strArray[i] = s.Split(new char[] { '\t' });
+            //    distanceMatrix[i] = new int[RES.LOC_MAX];
+            //    for (int j = 0; j < strArray[i].Length; j++)
+            //    {
+            //        distanceMatrix[i][j] = Int32.Parse(strArray[i][j]);
+            //    }
+            //}
             for (int i = 0; i < strArray.Length; i++ )
             {
-                strArray[i] = file.ReadLine().Split(new char[] { '\t' });
+                String s = originStr[i];
+                strArray[i] = s.Split(new char[] { '\t' });
                 distanceMatrix[i] = new int[RES.LOC_MAX];
                 for(int j = 0; j < strArray[i].Length; j++)
                 {

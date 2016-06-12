@@ -10,7 +10,7 @@
         <DockPanel>
             <!--<Border DockPanel.Dock="Bottom">
                 <StackPanel Orientation="Horizontal" ToolTip="右键有更多功能哦！">
-                    <Image Height="16" Width="16" Source="res/ico.png"></Image>
+                    <Image Height="16" Width="16" Source="Resources/ico.png"></Image>
                     <Label Content="右键有更多功能哦！" Foreground="Gray"></Label>
                 </StackPanel>
             </Border>-->
@@ -20,22 +20,22 @@
                         <ContextMenu>
                             <MenuItem Name="menuExpandAll" Header="全部展开" Click="menuExpandAll_Click">
                                 <MenuItem.Icon>
-                                    <Image Source="res/ico.png" />
+                                    <Image Source="Resources/ico.png" />
                                 </MenuItem.Icon>
                             </MenuItem>
                             <MenuItem Name="menuUnExpandAll" Header="全部折叠" Click="menuUnExpandAll_Click">
                                 <MenuItem.Icon>
-                                    <Image Source="res/ico.png" />
+                                    <Image Source="Resources/ico.png" />
                                 </MenuItem.Icon>
                             </MenuItem>
                             <MenuItem Name="menuSelectAll" Header="全部选中" Click="menuSelectAll_Click">
                                 <MenuItem.Icon>
-                                    <Image Source="res/ico.png" />
+                                    <Image Source="Resources/ico.png" />
                                 </MenuItem.Icon>
                             </MenuItem>
                             <MenuItem Name="menuUnSelectAll" Header="全部取消" Click="menuUnSelectAll_Click">
                                 <MenuItem.Icon>
-                                    <Image Source="res/ico.png" />
+                                    <Image Source="Resources/ico.png" />
                                 </MenuItem.Icon>
                             </MenuItem>
                         </ContextMenu>
@@ -58,12 +58,12 @@
                                         <ContextMenu>
                                             <MenuItem Name="menuSelectAllChild" Header="全部选中子项" Click="menuSelectAllChild_Click">
                                                 <MenuItem.Icon>
-                                                    <Image Source="res/ico.png" />
+                                                    <Image Source="Resources/ico.png" />
                                                 </MenuItem.Icon>
                                             </MenuItem>
                                             <MenuItem Name="queryIt" Header="查询物流信息" Click="queryIt_Click">
                                                 <MenuItem.Icon>
-                                                    <Image Source="res/ico.png" />
+                                                    <Image Source="Resources/ico.png" />
                                                 </MenuItem.Icon>
                                             </MenuItem>
                                         </ContextMenu>

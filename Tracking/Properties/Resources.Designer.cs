@@ -151,6 +151,22 @@ namespace Tracking.Properties {
         }
         
         /// <summary>
+        ///   查找类似 0 		65535 	137 	65535 	424 	1788 	1164 	1225
+        ///65535 	0 		1084 	1463 	846 	65535 	841		65535
+        ///137		1084	0		65535	330		65535	65535	1207
+        ///65535	1463	65535	0		65535	1673	991		65535
+        ///424		846		330		65535	0		1607	853		65535
+        ///1788	65535	65535	1673	1607	0		1145	65535
+        ///1164	841		65535	991		853		1145	0		65535
+        ///1225	65535	1207	65535	65535	65535	65535	0 的本地化字符串。
+        /// </summary>
+        public static string distanceMatrix {
+            get {
+                return ResourceManager.GetString("distanceMatrix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
         public static System.Drawing.Bitmap hover {

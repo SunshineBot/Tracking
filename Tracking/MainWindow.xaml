@@ -4,37 +4,20 @@
         Title="物流跟踪系统" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" Width="960" Height="670"
         >
     <Window.Background>
-        <ImageBrush ImageSource="res\index.png" />
+        <ImageBrush ImageSource="Resources/index.png" />
     </Window.Background>
-    <Window.Resources>
-        <ControlTemplate x:Key="CornerButton" TargetType="{x:Type Button}">
-            <!--<Border BorderBrush="LightBlue" BorderThickness="1" CornerRadius="10" Background="White">
-                <ContentPresenter Content="{TemplateBinding Content}"  HorizontalAlignment="Center" VerticalAlignment="Center" >
-                    
-                </ContentPresenter>
-                
-            </Border>
-            <ControlTemplate.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Foreground" Value="White"/>
-                    <Setter Property="Border.Background" Value="Black"/>
-                    <Setter Property="Background" Value="Black"/>
-                </Trigger>
-            </ControlTemplate.Triggers>-->
-        </ControlTemplate>
-    </Window.Resources>
     <Grid Width="960" Height="640">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Label x:Name="button_company" HorizontalAlignment="Left" Height="50" Margin="244,538,0,0" VerticalAlignment="Top" Width="150" MouseUp="button_company_MouseUp" MouseDown="button_company_MouseDwon" >
             <Label.Background>
-                <ImageBrush ImageSource="res\button\company-hover.png"/>
+                <ImageBrush ImageSource="Resources\company-hover.png"/>
             </Label.Background>
         </Label>
         <Label x:Name="button_person" HorizontalAlignment="Left" Margin="580,538,0,0" VerticalAlignment="Top" Width="150" Height="50" MouseUp="button_person_MouseUp" MouseDown="button_person_MouseDown">
             <Label.Background>
-                <ImageBrush ImageSource="res\button\person-hover.png"/>
+                <ImageBrush ImageSource="Resources\person-hover.png"/>
             </Label.Background>
         </Label>
 

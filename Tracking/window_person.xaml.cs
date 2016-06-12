@@ -120,23 +120,38 @@ namespace Tracking
 
         private void search_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            search.Background = new ImageBrush(new BitmapImage(new Uri("\\res\\button\\query-click.png",System.UriKind.Relative)));
+            IntPtr bitmap = global::Tracking.Properties.Resources.query_click.GetHbitmap();
+            ImageSource source = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(
+                bitmap, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+            search.Background = new ImageBrush(source);
         }
 
         private void search_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            search.Background = new ImageBrush(new BitmapImage(new Uri("res\\button\\query-hover.png",System.UriKind.Relative)));
+            IntPtr bitmap = global::Tracking.Properties.Resources.query_hover.GetHbitmap();
+            ImageSource source = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(
+                bitmap, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+            search.Background = new ImageBrush(source);
+            //search.Background = new ImageBrush(new BitmapImage(new Uri("res\\button\\query-hover.png",System.UriKind.Relative)));
             showmsg();
         }
 
         private void submit_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            submit.Background = new ImageBrush(new BitmapImage(new Uri("res\\button\\post-click.png", System.UriKind.Relative)));
+            IntPtr bitmap = global::Tracking.Properties.Resources.post_click.GetHbitmap();
+            ImageSource source = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(
+                bitmap, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+            submit.Background = new ImageBrush(source);
+            //submit.Background = new ImageBrush(new BitmapImage(new Uri("res\\button\\post-click.png", System.UriKind.Relative)));
         }
 
         private void submit_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            submit.Background = new ImageBrush(new BitmapImage(new Uri("res\\button\\post-hover.png", System.UriKind.Relative)));
+            IntPtr bitmap = global::Tracking.Properties.Resources.post_hover.GetHbitmap();
+            ImageSource source = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(
+                bitmap, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+            submit.Background = new ImageBrush(source);
+            //submit.Background = new ImageBrush(new BitmapImage(new Uri("res\\button\\post-hover.png", System.UriKind.Relative)));
             Dictionary<string, object> dic = new Dictionary<string, object>();
             dic.Add("sendername", sendername.Text);
             dic.Add("senderaddr", senderaddr.Text);

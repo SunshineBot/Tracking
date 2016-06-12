@@ -10,7 +10,7 @@
             <TabItem Header="发货" Width="50" >
                 <Grid>
                     <Grid.Background>
-                        <ImageBrush ImageSource="res\person_send.png" Stretch="Fill"></ImageBrush>
+                        <ImageBrush ImageSource="Resources\person_send.png" Stretch="Fill"></ImageBrush>
                     </Grid.Background>
                     <Label Content="寄件人姓名：" HorizontalAlignment="Left" Height="25" Margin="88,134,0,0" VerticalAlignment="Top" Width="75"/>
                     <Label Content="寄件人地址：" HorizontalAlignment="Left" Height="25" Margin="88,164,0,0" VerticalAlignment="Top" Width="75"/>
@@ -30,7 +30,7 @@
                     <ComboBox x:Name="receivesite" HorizontalAlignment="Left" Height="25" Margin="178,344,0,0" VerticalAlignment="Top" Width="255"/>
                     <Label x:Name="submit" Content=""  HorizontalAlignment="Left" Height="30" Margin="247,420,0,0" VerticalAlignment="Top" Width="100" MouseDown="submit_MouseDown" MouseUp="submit_MouseUp">
                         <Label.Background>
-                            <ImageBrush ImageSource="res\button\post-hover.png"></ImageBrush>
+                            <ImageBrush ImageSource="Resources\post-hover.png"></ImageBrush>
                         </Label.Background>
                     </Label>
                     <Label Content="货物类型:" HorizontalAlignment="Left" Height="25" Margin="88,376,0,0" VerticalAlignment="Top" Width="75"/>
@@ -40,7 +40,7 @@
             <TabItem Header="查询" Width="50">
                 <Grid HorizontalAlignment="Left" Width="826">
                     <Grid.Background>
-                        <ImageBrush ImageSource="res\person_inquiry.png" Stretch="Fill"></ImageBrush>
+                        <ImageBrush ImageSource="Resources\person_inquiry.png" Stretch="Fill"></ImageBrush>
                     </Grid.Background>
                     <Label  Foreground="White" Content="单号：" HorizontalAlignment="Left" Height="25" Margin="610,123,0,0" VerticalAlignment="Top" Width="50">
                         
@@ -48,7 +48,7 @@
                     <TextBox x:Name="goodsid" HorizontalAlignment="Left" Height="25" Margin="611,162,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="171" VerticalContentAlignment="Center" />
                     <Label x:Name="search"  Content="" HorizontalAlignment="Left" Height="25" Margin="652,208,0,0" VerticalAlignment="Top" Width="90" MouseDown="search_MouseDown" MouseUp="search_MouseUp">
                         <Label.Background>
-                            <ImageBrush Stretch="Fill" ImageSource="res\button\query-hover.png"></ImageBrush>
+                            <ImageBrush Stretch="Fill" ImageSource="Resources\query-hover.png"></ImageBrush>
                         </Label.Background>
                     </Label>
                     <TextBlock HorizontalAlignment="Left" x:Name="info_textblock" Height="358" Margin="60,137,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="502"/>

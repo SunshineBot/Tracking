@@ -4,7 +4,7 @@
         xmlns:local="clr-namespace:Tracking" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="Tracking.window_company"
         Title="window_company" Unloaded="window_unload" WindowStartupLocation="CenterScreen" d:DesignHeight="660.334" Width="960" Height="680" ResizeMode="CanMinimize">
     <Window.Background>
-        <ImageBrush ImageSource="res/company_function.png"/>
+        <ImageBrush ImageSource="Resources/company_function.png"/>
     </Window.Background>
     <Grid Width="960" Height="640">
         <Grid.ColumnDefinitions>
@@ -181,17 +181,17 @@
 
         <Label x:Name="label_send" Content="" HorizontalAlignment="Left" Margin="403,587,0,0" VerticalAlignment="Top" Width="130" Height="40" MouseDown="label_send_MouseDown" MouseUp="label_send_MouseUp">
             <Label.Background>
-                <ImageBrush ImageSource="res/button/send-hover.png" />
+                <ImageBrush ImageSource="Resources/send-hover.png" />
             </Label.Background>
         </Label>
         <Label x:Name="label_settle" Content="" HorizontalAlignment="Left" Margin="561,587,0,0" VerticalAlignment="Top" Width="130" Height="40" MouseDown="label_settle_MouseDown" MouseUp="label_settle_MouseUp">
             <Label.Background>
-                <ImageBrush ImageSource="res/button/settle-hover.png" />
+                <ImageBrush ImageSource="Resources/settle-hover.png" />
             </Label.Background>
         </Label>
         <Label x:Name="label_back" Content="" HorizontalAlignment="Left" Margin="721,587,0,0" VerticalAlignment="Top" Width="130" Height="40" MouseDown="label_back_MouseDown" MouseUp="label_back_MouseUp">
             <Label.Background>
-                <ImageBrush ImageSource="res/button/back-hover.png" />
+                <ImageBrush ImageSource="Resources/back-hover.png" />
             </Label.Background>
         </Label>
 

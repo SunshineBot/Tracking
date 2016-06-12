@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="window_send" Height="640" Width="960">
     <Window.Background>
-        <ImageBrush ImageSource="res/person_send.png"/>
+        <ImageBrush ImageSource="Resources/person_send.png"/>
     </Window.Background>
     <Grid>
         
