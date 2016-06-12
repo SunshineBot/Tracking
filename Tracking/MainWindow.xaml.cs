@@ -98,7 +98,7 @@ namespace Tracking
             button_person.Background = new ImageBrush(source);
             Window_person win_per = new Window_person(this);
             win_per.Show();
-            //this.Hide();
+            this.Hide();
         }
 
     }
