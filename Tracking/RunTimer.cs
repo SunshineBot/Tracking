@@ -87,7 +87,8 @@ namespace Tracking
                     {
                         NextNode n = t.trackRoute;
                         //写入数据库
-                        DBO.newRecord(t.Name, t.trackRoute.current, t.trackRoute.next, RES.ARRIVED);
+                        DBO.newRecord(t.Name, t.trackRoute.current, t.trackRoute.next, RES.SENDING);
+                        DBO.newRecord(t.Name, t.trackRoute.next, t.trackRoute.next, RES.ARRIVED);
                         //修改UI表项
                         ZsmTreeView currentTree = treeList[n.current][1];
                         ZsmTreeView nextTree = treeList[n.next][2];

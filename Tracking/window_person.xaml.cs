@@ -120,23 +120,23 @@ namespace Tracking
 
         private void search_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            search.Background = new ImageBrush(new BitmapImage(new Uri("D:\\visual studio project\\tracing\\Tracking\\Tracking\\res\\button\\query-click.png",System.UriKind.Relative)));
+            search.Background = new ImageBrush(new BitmapImage(new Uri("\\res\\button\\query-click.png",System.UriKind.Relative)));
         }
 
         private void search_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            search.Background = new ImageBrush(new BitmapImage(new Uri("D:\\visual studio project\\tracing\\Tracking\\Tracking\\res\\button\\query-hover.png",System.UriKind.Relative)));
+            search.Background = new ImageBrush(new BitmapImage(new Uri("res\\button\\query-hover.png",System.UriKind.Relative)));
             showmsg();
         }
 
         private void submit_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            submit.Background = new ImageBrush(new BitmapImage(new Uri("D:\\visual studio project\\tracing\\Tracking\\Tracking\\res\\button\\post-click.png", System.UriKind.Relative)));
+            submit.Background = new ImageBrush(new BitmapImage(new Uri("res\\button\\post-click.png", System.UriKind.Relative)));
         }
 
         private void submit_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            submit.Background = new ImageBrush(new BitmapImage(new Uri("D:\\visual studio project\\tracing\\Tracking\\Tracking\\res\\button\\post-hover.png", System.UriKind.Relative)));
+            submit.Background = new ImageBrush(new BitmapImage(new Uri("res\\button\\post-hover.png", System.UriKind.Relative)));
             Dictionary<string, object> dic = new Dictionary<string, object>();
             dic.Add("sendername", sendername.Text);
             dic.Add("senderaddr", senderaddr.Text);

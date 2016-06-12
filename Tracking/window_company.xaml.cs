@@ -338,7 +338,7 @@ namespace Tracking
             foreach (TreeModel t in arrivedCheckedList)
             {
                 //写入数据库
-                DBO.newRecord(t.Name, t.trackRoute.next, t.trackRoute.next, RES.SETTLED);
+                DBO.newRecord(t.Name, t.dst, t.dst, RES.SETTLED);
                 //修改逻辑表，从勾选状态进入已结算状态
                 //arrivedCheckedList.Remove(t);
                 settledList.Add(t);
