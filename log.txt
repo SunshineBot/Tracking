@@ -1,0 +1,149 @@
+commit 20f3e9134a46f12f2d651db2cf36cd296a4af0a1
+Merge: 48dde2f b248e1e
+Author: yan <8745928@163.com>
+Date:   Tue Jun 7 20:30:52 2016 +0800
+
+    啦啦啦，完工
+
+commit 48dde2fa7f36b9f61f4fc208060c7e375931017c
+Author: yan <8745928@163.com>
+Date:   Tue Jun 7 20:25:32 2016 +0800
+
+    。。。
+
+commit 21fbcb96d4695fec9f69f0d0f9c81ad5200a1576
+Author: yan <8745928@163.com>
+Date:   Tue Jun 7 20:22:56 2016 +0800
+
+    。。。
+
+commit ca475cbdb50d22f81be6a64710672e7bf00f8c67
+Author: yan <8745928@163.com>
+Date:   Tue Jun 7 20:21:27 2016 +0800
+
+    换了几个图片
+
+commit b248e1eef0ed02b881f54c3bbf09acbab86ad628
+Author: SunshineBot <dthomas@qq.com>
+Date:   Mon Jun 6 22:01:14 2016 +0800
+
+    添加了公司界面的订单查询，在右键菜单里。
+
+commit ff155ebd441c0b2ea2d7fa63fb8533524aac9878
+Author: SunshineBot <dthomas@qq.com>
+Date:   Mon Jun 6 16:21:04 2016 +0800
+
+    将c#代码中对图片的引用改为资源
+
+commit 7b8c0f53e7ef4d88e99f845036c0424754705c00
+Merge: 92014db 752c462
+Author: yan <8745928@163.com>
+Date:   Mon May 30 19:58:16 2016 +0800
+
+    Merge branch 'master' of https://github.com/SunshineBot/Tracking
+
+commit 92014db93afec1791089340ee0bb488da2379d1a
+Author: yan <8745928@163.com>
+Date:   Mon May 30 19:57:00 2016 +0800
+
+    add distinct to getDate
+
+commit 752c4627235e46e73f906d4223a38e3248144f88
+Author: sunshine <dthomas@qq.com>
+Date:   Mon May 30 18:13:04 2016 +0800
+
+    公司功能模块完工。等待测试。
+
+commit 1ddc9262a80663dc62b7659ed7f22829f9b5ee41
+Merge: 17914ab 0fac4fe
+Author: sunshine <dthomas@qq.com>
+Date:   Mon May 30 17:28:09 2016 +0800
+
+    Merge branch 'master' of https://github.com/SunshineBot/Tracking.git
+
+commit 17914abc209ecb56071228e5a754e9579181e6f1
+Author: sunshine <dthomas@qq.com>
+Date:   Mon May 30 17:28:02 2016 +0800
+
+    我也忘了改了啥了……
+
+commit 0fac4feb1826f0ba3ea0bffe6dd56e7c68674789
+Author: yan <8745928@163.com>
+Date:   Mon May 30 12:40:12 2016 +0800
+
+    完成id的生成
+
+commit 22af7ddece3ffd4705aef347c14700e3a6076959
+Author: yan <8745928@163.com>
+Date:   Wed May 25 19:02:55 2016 +0800
+
+    修复一些细节
+
+commit 3dd227c6702a36351c4b8070ad1a32478e305f1a
+Author: yan <8745928@163.com>
+Date:   Wed May 25 18:55:45 2016 +0800
+
+    修复sql的bug
+
+commit 9387c38f7acf01633df153e03fd2382cf582a3b1
+Author: sunshine <dthomas@qq.com>
+Date:   Wed May 25 11:29:59 2016 +0800
+
+    一些改动，等待测试数据库。
+
+commit e729a7be27f235703683db8d3da99842e6787418
+Merge: fd953a5 46d133f
+Author: sunshine <dthomas@qq.com>
+Date:   Wed May 25 10:33:39 2016 +0800
+
+    Merge branch 'master' of https://github.com/SunshineBot/Tracking.git
+
+commit fd953a584edc9f6c9a4994bf442c0685760d73e5
+Author: sunshine <dthomas@qq.com>
+Date:   Wed May 25 10:33:33 2016 +0800
+
+    写完了发送
+
+commit 46d133f2bc76025b8b2e148bbf569bc7d31e981b
+Merge: fb2e86e a384737
+Author: yan <8745928@163.com>
+Date:   Tue May 24 10:19:04 2016 +0800
+
+    Merge branch 'master' of https://github.com/SunshineBot/Tracking
+
+commit fb2e86edaa3cfd4524afce5ccea359d73903508c
+Author: yan <8745928@163.com>
+Date:   Tue May 24 10:18:44 2016 +0800
+
+    修改了DBO.getDate
+
+commit a384737da09a20cda866a8180d669280c784b6f3
+Merge: c0100ce e5fbecf
+Author: sunshine <dthomas@qq.com>
+Date:   Mon May 23 18:57:41 2016 +0800
+
+    Merge branch 'master' of https://github.com/SunshineBot/Tracking.git
+
+commit c0100cea180f71a39ad762758601cae0ea0ec981
+Author: sunshine <dthomas@qq.com>
+Date:   Mon May 23 18:57:26 2016 +0800
+
+    完成了最短路径
+
+commit e5fbecf4a19054bb02430a348b1b94a522650bba
+Author: yan <8745928@163.com>
+Date:   Mon May 23 15:54:59 2016 +0800
+
+    个人功能已撸完，数据库的几个接口还没有测试，等用的时候有问题再说吧。
+
+commit 78d87d8475db0b287b487dc7a091dc9e56015d96
+Author: yan <8745928@163.com>
+Date:   Sun May 22 21:32:01 2016 +0800
+
+    更新了数据库操作和个人界面
+
+commit 1d5261b8fb4e8dc3f03c15951ea2b48c5bbd885a
+Author: sunshine <dthomas@qq.com>
+Date:   Sun May 22 21:20:52 2016 +0800
+
+    first commit

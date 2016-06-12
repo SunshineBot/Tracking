@@ -132,6 +132,12 @@
     <Resource Include="distanceMatrix.txt" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="距离矩阵.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
     <Resource Include="res\button\back-click.png" />
     <Resource Include="res\button\back-hover.png" />
     <Resource Include="res\button\back-simple.png" />
@@ -167,10 +173,6 @@
     <Resource Include="res\index.png" />
     <Resource Include="res\person_inquiry.png" />
     <Resource Include="res\person_send.png" />
-    <Resource Include="距离矩阵.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
