@@ -132,41 +132,6 @@
     <Resource Include="distanceMatrix.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="res\button\back-click.png" />
-    <Resource Include="res\button\back-hover.png" />
-    <Resource Include="res\button\back-simple.png" />
-    <Resource Include="res\button\click.png" />
-    <Resource Include="res\button\click2.png" />
-    <Resource Include="res\button\company-click.png" />
-    <Resource Include="res\button\company-hover.png" />
-    <Resource Include="res\button\company-simple.png" />
-    <Resource Include="res\button\hover.png" />
-    <Resource Include="res\button\hover2.png" />
-    <Resource Include="res\button\ineedpost-click.png" />
-    <Resource Include="res\button\ineedpost-hover.png" />
-    <Resource Include="res\button\ineedpost-simple.png" />
-    <Resource Include="res\button\person-click.png" />
-    <Resource Include="res\button\person-hover.png" />
-    <Resource Include="res\button\person-simple.png" />
-    <Resource Include="res\button\post-click.png" />
-    <Resource Include="res\button\post-hover.png" />
-    <Resource Include="res\button\post-simple.png" />
-    <Resource Include="res\button\query-click.png" />
-    <Resource Include="res\button\query-hover.png" />
-    <Resource Include="res\button\query-simple.png" />
-    <Resource Include="res\button\send-click.png" />
-    <Resource Include="res\button\send-hover.png" />
-    <Resource Include="res\button\send-simple.png" />
-    <Resource Include="res\button\settle-click.png" />
-    <Resource Include="res\button\settle-hover.png" />
-    <Resource Include="res\button\settle-simple.png" />
-    <Resource Include="res\button\simple.png" />
-    <Resource Include="res\button\simple2.png" />
-    <Resource Include="res\company_function.png" />
-    <Resource Include="res\ico.png" />
-    <Resource Include="res\index.png" />
-    <Resource Include="res\person_inquiry.png" />
-    <Resource Include="res\person_send.png" />
     <Resource Include="距离矩阵.txt" />
   </ItemGroup>
   <ItemGroup>
