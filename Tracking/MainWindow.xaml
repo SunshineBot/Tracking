@@ -10,14 +10,14 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Label x:Name="button_company" HorizontalAlignment="Left" Height="50" Margin="244,538,0,0" VerticalAlignment="Top" Width="150" MouseUp="button_company_MouseUp" MouseDown="button_company_MouseDwon" >
+        <Label x:Name="button_company" HorizontalAlignment="Left" Height="50" Margin="244,538,0,0" VerticalAlignment="Top" Width="150" MouseUp="button_company_MouseUp" MouseDown="button_company_MouseDwon" MouseEnter="button_company_MouseEnter" MouseLeave="button_company_MouseLeave" >
             <Label.Background>
-                <ImageBrush ImageSource="Resources\company-hover.png"/>
+                <ImageBrush ImageSource="Resources\company-simple.png"/>
             </Label.Background>
         </Label>
-        <Label x:Name="button_person" HorizontalAlignment="Left" Margin="580,538,0,0" VerticalAlignment="Top" Width="150" Height="50" MouseUp="button_person_MouseUp" MouseDown="button_person_MouseDown">
+        <Label x:Name="button_person" HorizontalAlignment="Left" Margin="580,538,0,0" VerticalAlignment="Top" Width="150" Height="50" MouseUp="button_person_MouseUp" MouseDown="button_person_MouseDown" MouseEnter="button_person_MouseEnter" MouseLeave="button_person_MouseLeave">
             <Label.Background>
-                <ImageBrush ImageSource="Resources\person-hover.png"/>
+                <ImageBrush ImageSource="Resources\person-simple.png"/>
             </Label.Background>
         </Label>
 

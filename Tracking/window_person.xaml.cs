@@ -128,12 +128,28 @@ namespace Tracking
 
         private void search_MouseUp(object sender, MouseButtonEventArgs e)
         {
+            IntPtr bitmap = global::Tracking.Properties.Resources.query_simple.GetHbitmap();
+            ImageSource source = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(
+                bitmap, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+            search.Background = new ImageBrush(source);
+            //search.Background = new ImageBrush(new BitmapImage(new Uri("res\\button\\query-simple.png",System.UriKind.Relative)));
+            showmsg();
+        }
+
+        private void search_MouseEnter(object sender, MouseEventArgs e)
+        {
             IntPtr bitmap = global::Tracking.Properties.Resources.query_hover.GetHbitmap();
             ImageSource source = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(
                 bitmap, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
             search.Background = new ImageBrush(source);
-            //search.Background = new ImageBrush(new BitmapImage(new Uri("res\\button\\query-hover.png",System.UriKind.Relative)));
-            showmsg();
+        }
+
+        private void search_MouseLeave(object sender, MouseEventArgs e)
+        {
+            IntPtr bitmap = global::Tracking.Properties.Resources.query_simple.GetHbitmap();
+            ImageSource source = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(
+                bitmap, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+            search.Background = new ImageBrush(source);
         }
 
         private void submit_MouseDown(object sender, MouseButtonEventArgs e)
@@ -147,11 +163,11 @@ namespace Tracking
 
         private void submit_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            IntPtr bitmap = global::Tracking.Properties.Resources.post_hover.GetHbitmap();
+            IntPtr bitmap = global::Tracking.Properties.Resources.post_simple.GetHbitmap();
             ImageSource source = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(
                 bitmap, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
             submit.Background = new ImageBrush(source);
-            //submit.Background = new ImageBrush(new BitmapImage(new Uri("res\\button\\post-hover.png", System.UriKind.Relative)));
+            //submit.Background = new ImageBrush(new BitmapImage(new Uri("res\\button\\post-simple.png", System.UriKind.Relative)));
             Dictionary<string, object> dic = new Dictionary<string, object>();
             dic.Add("sendername", sendername.Text);
             dic.Add("senderaddr", senderaddr.Text);
@@ -183,11 +199,45 @@ namespace Tracking
 
         private void back_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            IntPtr bitmap = global::Tracking.Properties.Resources.back_hover.GetHbitmap();
+            IntPtr bitmap = global::Tracking.Properties.Resources.back_simple.GetHbitmap();
             ImageSource source = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(
                 bitmap, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
             search.Background = new ImageBrush(source);
             this.Close();
         }
+
+        private void submit_MouseEnter(object sender, MouseEventArgs e)
+        {
+            IntPtr bitmap = global::Tracking.Properties.Resources.post_hover.GetHbitmap();
+            ImageSource source = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(
+                bitmap, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+            submit.Background = new ImageBrush(source);
+        }
+
+        private void submit_MouseLeave(object sender, MouseEventArgs e)
+        {
+            IntPtr bitmap = global::Tracking.Properties.Resources.post_simple.GetHbitmap();
+            ImageSource source = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(
+                bitmap, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+            submit.Background = new ImageBrush(source);
+        }
+
+        private void back_MouseEnter(object sender, MouseEventArgs e)
+        {
+            IntPtr bitmap = global::Tracking.Properties.Resources.back_hover.GetHbitmap();
+            ImageSource source = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(
+                bitmap, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+            ((Label)sender).Background = new ImageBrush(source);
+        }
+
+        private void back_MouseLeave(object sender, MouseEventArgs e)
+        {
+            IntPtr bitmap = global::Tracking.Properties.Resources.back_simple.GetHbitmap();
+            ImageSource source = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(
+                bitmap, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+            ((Label)sender).Background = new ImageBrush(source);
+        }
+
+
     }
 }

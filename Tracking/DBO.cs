@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using System.Data;
+using System.Windows;
 namespace Tracking
 {
     class DBO
@@ -13,9 +14,24 @@ namespace Tracking
         
         public static DataSet execute(string sql)
         {
-            MySqlDataAdapter adapter = new MySqlDataAdapter(sql, connection);
             DataSet result = new DataSet();
-            adapter.Fill(result, "result");
+            result.Tables.Add(new DataTable("result"));
+            try
+            {
+                MySqlDataAdapter adapter = new MySqlDataAdapter(sql, connection);
+                adapter.Fill(result, "result");
+            }
+            catch (Exception ee)
+            {
+                MessageBoxResult messageResult = System.Windows.MessageBox.Show("数据库访问出现错误，可能的原因是账户名或者密码不对，或者不存在该数据库。\n错误代码如下：\n" + ee.ToString() +"\n\n点击\"确定\"继续运行，点击\"取消\"立即关闭程序。", 
+                    "警告", 
+                    System.Windows.MessageBoxButton.OKCancel, 
+                    System.Windows.MessageBoxImage.Warning);
+                if (messageResult == MessageBoxResult.Cancel)
+                {
+                    System.Diagnostics.Process.GetCurrentProcess().Kill();
+                }
+            }
             return result;
         }
 
@@ -56,7 +72,7 @@ namespace Tracking
             }
             catch(Exception )
             {
-                throw new Exception();
+                return null;
             }
         }
 

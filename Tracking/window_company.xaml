@@ -179,19 +179,19 @@
         </TabControl>
         <Label Content="黑龙江" HorizontalAlignment="Left" Margin="746,321,0,0" VerticalAlignment="Top" FontSize="24"/>
 
-        <Label x:Name="label_send" Content="" HorizontalAlignment="Left" Margin="403,587,0,0" VerticalAlignment="Top" Width="130" Height="40" MouseDown="label_send_MouseDown" MouseUp="label_send_MouseUp">
+        <Label x:Name="label_send" Content="" HorizontalAlignment="Left" Margin="403,587,0,0" VerticalAlignment="Top" Width="130" Height="40" MouseDown="label_send_MouseDown" MouseUp="label_send_MouseUp" MouseEnter="label_send_MouseEnter" MouseLeave="label_send_MouseLeave">
             <Label.Background>
-                <ImageBrush ImageSource="Resources/send-hover.png" />
+                <ImageBrush ImageSource="Resources/send-simple.png" />
             </Label.Background>
         </Label>
-        <Label x:Name="label_settle" Content="" HorizontalAlignment="Left" Margin="561,587,0,0" VerticalAlignment="Top" Width="130" Height="40" MouseDown="label_settle_MouseDown" MouseUp="label_settle_MouseUp">
+        <Label x:Name="label_settle" Content="" HorizontalAlignment="Left" Margin="561,587,0,0" VerticalAlignment="Top" Width="130" Height="40" MouseDown="label_settle_MouseDown" MouseUp="label_settle_MouseUp" MouseEnter="label_settle_MouseEnter" MouseLeave="label_settle_MouseLeave">
             <Label.Background>
-                <ImageBrush ImageSource="Resources/settle-hover.png" />
+                <ImageBrush ImageSource="Resources/settle-simple.png" />
             </Label.Background>
         </Label>
-        <Label x:Name="label_back" Content="" HorizontalAlignment="Left" Margin="721,587,0,0" VerticalAlignment="Top" Width="130" Height="40" MouseDown="label_back_MouseDown" MouseUp="label_back_MouseUp">
+        <Label x:Name="label_back" Content="" HorizontalAlignment="Left" Margin="721,587,0,0" VerticalAlignment="Top" Width="130" Height="40" MouseDown="label_back_MouseDown" MouseUp="label_back_MouseUp" MouseEnter="label_back_MouseEnter" MouseLeave="label_back_MouseLeave">
             <Label.Background>
-                <ImageBrush ImageSource="Resources/back-hover.png" />
+                <ImageBrush ImageSource="Resources/back-simple.png" />
             </Label.Background>
         </Label>
 

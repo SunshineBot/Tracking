@@ -244,8 +244,8 @@ namespace Tracking
             // todo : 暂停timer
             runTimer.Enabled = false;
             //label_send.Background = new ImageBrush(new BitmapImage(
-                //new Uri("res\\button\\send-hover.png", System.UriKind.Relative)));
-            IntPtr bitmap = global::Tracking.Properties.Resources.send_hover.GetHbitmap();
+                //new Uri("res\\button\\send-simple.png", System.UriKind.Relative)));
+            IntPtr bitmap = global::Tracking.Properties.Resources.send_simple.GetHbitmap();
             ImageSource source = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(
                 bitmap, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
             label_send.Background = new ImageBrush(source);
@@ -328,8 +328,8 @@ namespace Tracking
         private void label_settle_MouseUp(object sender, MouseButtonEventArgs e)
         {
             //label_settle.Background = new ImageBrush(new BitmapImage(
-            //    new Uri("res\\button\\settle-hover.png", System.UriKind.Relative)));
-            IntPtr bitmap = global::Tracking.Properties.Resources.settle_hover.GetHbitmap();
+            //    new Uri("res\\button\\settle-simple.png", System.UriKind.Relative)));
+            IntPtr bitmap = global::Tracking.Properties.Resources.settle_simple.GetHbitmap();
             ImageSource source = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(
                 bitmap, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
             label_settle.Background = new ImageBrush(source);
@@ -389,8 +389,8 @@ namespace Tracking
         private void label_back_MouseUp(object sender, MouseButtonEventArgs e)
         {
             //label_back.Background = new ImageBrush(new BitmapImage(
-            //    new Uri("res\\button\\back-hover.png", System.UriKind.Relative)));
-            IntPtr bitmap = global::Tracking.Properties.Resources.back_hover.GetHbitmap();
+            //    new Uri("res\\button\\back-simple.png", System.UriKind.Relative)));
+            IntPtr bitmap = global::Tracking.Properties.Resources.back_simple.GetHbitmap();
             ImageSource source = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(
                 bitmap, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
             label_back.Background = new ImageBrush(source);
@@ -412,5 +412,55 @@ namespace Tracking
             arrivedList.Remove(t);
             arrivedCheckedList.Add(t);
         }
+
+        private void label_send_MouseEnter(object sender, MouseEventArgs e)
+        {
+            IntPtr bitmap = global::Tracking.Properties.Resources.send_hover.GetHbitmap();
+            ImageSource source = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(
+                bitmap, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+            label_send.Background = new ImageBrush(source);
+        }
+
+
+        private void label_send_MouseLeave(object sender, MouseEventArgs e)
+        {
+            IntPtr bitmap = global::Tracking.Properties.Resources.send_simple.GetHbitmap();
+            ImageSource source = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(
+                bitmap, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+            label_send.Background = new ImageBrush(source);
+        }
+
+        private void label_settle_MouseEnter(object sender, MouseEventArgs e)
+        {
+            IntPtr bitmap = global::Tracking.Properties.Resources.settle_hover.GetHbitmap();
+            ImageSource source = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(
+                bitmap, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+            label_settle.Background = new ImageBrush(source);
+        }
+
+        private void label_settle_MouseLeave(object sender, MouseEventArgs e)
+        {
+            IntPtr bitmap = global::Tracking.Properties.Resources.settle_simple.GetHbitmap();
+            ImageSource source = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(
+                bitmap, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+            label_settle.Background = new ImageBrush(source);
+        }
+
+        private void label_back_MouseEnter(object sender, MouseEventArgs e)
+        {
+            IntPtr bitmap = global::Tracking.Properties.Resources.back_hover.GetHbitmap();
+            ImageSource source = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(
+                bitmap, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+            label_back.Background = new ImageBrush(source);
+        }
+
+        private void label_back_MouseLeave(object sender, MouseEventArgs e)
+        {
+            IntPtr bitmap = global::Tracking.Properties.Resources.back_simple.GetHbitmap();
+            ImageSource source = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(
+                bitmap, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+            label_back.Background = new ImageBrush(source);
+        }
+
     }
 }
